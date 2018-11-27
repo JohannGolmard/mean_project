@@ -19,10 +19,14 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit() {
   }
+  private fuckt : Object[];
   onSubmit(){
   	this.service.addUser(this.mail,this.nom,this.prenom,this.mdp,this.role).subscribe(res =>{
-  		this.resp = res;
-  	});
+  			this.fuckt = res;
+  		});
+  	/*this.service.getUsers().subscribe(res =>{
+  		this.listUsers = res;
+  	});*/
   }
 
 }

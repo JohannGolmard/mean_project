@@ -8,15 +8,18 @@ import { RequestOptions } from '@angular/http';
 })
 export class UsersService {
 
+	private _options = new HttpHeaders({'Content-Type':'application/json'});
+
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<any>{
-  		let observable: Observable<any> = this.http.get("http://localhost:8888/searchUser");
+  		let observable: Observable<any> = this.http.get("http://localhost:8888/users");
   		return observable;
   }
   addUser(mail:string, nom:string, prenom:string, mdp:string, role:string): Observable<any> {
   		let url= "http://localhost:8888/addUsers"
-  		let data = {"mail":mail,"nom":nom,"prenom":prenom, "mdp":mdp,"role":role};
+  		let data = {"email":mail,"nom":nom,"prenom":prenom, "mdp":mdp,"role":role};
+  		//let options = new RequestOptions({headers:this._options});
 
   		return this.http.post(url,data);
   }

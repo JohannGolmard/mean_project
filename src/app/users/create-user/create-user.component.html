@@ -1,14 +1,48 @@
-<form method="post" (ngSubmit)="onSubmit()">
+<h1>Formulaire d'inscription</h1>
+<!--<form method="post" (ngSubmit)="onSubmit()">
 	<label>Login</label>
-	<input type="text" name="login" [(ngModel)]="mail"/>{{mail}}
+	<input type="text" name="login" [(ngModel)]="mail"/>
 	<label>mdp</label>
-	<input type="text" name="mdp" [(ngModel)]="mdp"/>{{mdp}}
+	<input type="text" name="mdp" [(ngModel)]="mdp"/>
 	<label>nom</label>
-	<input type="text" name="nom" [(ngModel)]="nom"/>{{nom}}
+	<input type="text" name="nom" [(ngModel)]="nom"/>
 	<label>prenom</label>
-	<input type="text" name="prenom" [(ngModel)]="prenom"/>{{prenom}}
+	<input type="text" name="prenom" [(ngModel)]="prenom"/>
 	<label>role</label>
-	<input type="text" name="role" [(ngModel)]="role"/>{{role}}
+	<input type="text" name="role" [(ngModel)]="role"/>
 
 	<button type="submit">Envoyer</button>
-</form>
+</form>-->
+
+
+        <div class="container">
+        <form  method="post" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label>Login </label>
+			<input type="text" class="form-control" name="login" [(ngModel)]="mail"/>
+          </div>
+
+          <div class="form-group">
+            <label>mdp </label>
+			<input type="text" class="form-control" name="mdp" [(ngModel)]="mdp"/>
+          </div>
+
+          <div class="form-group">
+            	<label>Nom </label>
+				<input type="text" class="form-control" name="nom" [(ngModel)]="nom"/>
+          </div>
+
+          <div class="form-group">
+            <label>prenom</label>
+			<input type="text" class="form-control" name="prenom" [(ngModel)]="prenom"/>
+          </div>
+     
+          <div class="form-group">
+            <label>role</label>
+			<input type="text" class="form-control" name="role" [(ngModel)]="role"/>
+          </div>
+     
+          <button type="submit" class="btn btn-success">Submit</button>
+     
+        </form>
+    </div>
