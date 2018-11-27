@@ -1,0 +1,14 @@
+<form method="post" (ngSubmit)="onSubmit()">
+	<label>Login</label>
+	<input type="text" name="login" [(ngModel)]="mail"/>{{mail}}
+	<label>mdp</label>
+	<input type="text" name="mdp" [(ngModel)]="mdp"/>{{mdp}}
+	<label>nom</label>
+	<input type="text" name="nom" [(ngModel)]="nom"/>{{nom}}
+	<label>prenom</label>
+	<input type="text" name="prenom" [(ngModel)]="prenom"/>{{prenom}}
+	<label>role</label>
+	<input type="text" name="role" [(ngModel)]="role"/>{{role}}
+
+	<button type="submit">Envoyer</button>
+</form>
