@@ -20,11 +20,8 @@
       <li class="nav-item" *ngIf="!isLogged">
         <a class="nav-link" [routerLink]="['/login']">Connexion</a>
       </li>
-      <br/>
-      <li class="nav-item" *ngIf="isLogged">
-        <button class="btn btn-secondary btn-sm navbar-right" (click)="logOut()">LogOut</button>
-      </li>
     </ul>
+    <button *ngIf="isLogged" class="btn btn-secondary" (click)="logOut()">LogOut</button>
     <!--<form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
