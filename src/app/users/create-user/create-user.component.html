@@ -15,34 +15,37 @@
 </form>-->
 
 
-        <div class="container">
-        <form  method="post" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <form  method="post" *ngIf="!submitted" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label>Login </label>
-			<input type="text" class="form-control" name="login" [(ngModel)]="mail"/>
+    			   <input type="text" required placeholder="your email" class="form-control" name="login" [(ngModel)]="mail"/>
           </div>
 
           <div class="form-group">
-            <label>mdp </label>
-			<input type="text" class="form-control" name="mdp" [(ngModel)]="mdp"/>
+            <label>Password </label>
+    			   <input type="password" required placeholder="your password" class="form-control" name="mdp" [(ngModel)]="mdp"/>
           </div>
 
           <div class="form-group">
-            	<label>Nom </label>
-				<input type="text" class="form-control" name="nom" [(ngModel)]="nom"/>
+           	<label>Nom </label>
+    				<input type="text" required placeholder="your firstname" class="form-control" name="nom" [(ngModel)]="nom"/>
           </div>
 
           <div class="form-group">
-            <label>prenom</label>
-			<input type="text" class="form-control" name="prenom" [(ngModel)]="prenom"/>
+            <label>Prenom</label>
+    			   <input type="text" required placeholder="your lastname" class="form-control" name="prenom" [(ngModel)]="prenom"/>
           </div>
-     
-          <div class="form-group">
-            <label>role</label>
-			<input type="text" class="form-control" name="role" [(ngModel)]="role"/>
-          </div>
-     
+         
           <button type="submit" class="btn btn-success">Submit</button>
      
         </form>
+
+
+        <div *ngIf="submitted">
+          <br/>
+          Inscription réussie !
+          <br/>
+          <br/>
+        </div>
     </div>

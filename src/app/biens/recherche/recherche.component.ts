@@ -15,12 +15,21 @@ export class RechercheComponent implements OnInit {
   private semF : string;
   private tags : Object [];
   private result : Object [];
+  private submitted : boolean = false;
   constructor(private service: SearchBiensService) { }
 
   ngOnInit() {
-  	this.service.getBiens(this.type,this.nom,this.min,this.max,this.semD,this.semF,this.tags).subscribe(res =>{
-  		this.result = res;
-  	});
+  	
+  }
+  onSubmit(){
+  	if(this.type != "" && this.nom != "" && this.min != "" && this.max != "" && this.semD != "" && this.semF != ""){
+  		this.service.getBiens(this.type,this.nom,this.min,this.max,this.semD,this.semF,this.tags).subscribe(res =>{
+  			this.result = res;
+  		});
+  		this.submitted=true;
+  		console.log(this.result+" lawl");
+
+  	}
   }
 
 }

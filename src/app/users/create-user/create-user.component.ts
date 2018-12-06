@@ -14,19 +14,24 @@ export class CreateUserComponent implements OnInit {
   private mdp: string;
   private nom: string;
   private prenom: string;
-  private role: string;
+  private submitted : boolean=false;
   constructor(private service: UsersService) { }
 
   ngOnInit() {
   }
-  private fuckt : Object[];
+  private added : Object[];
   onSubmit(){
-  	this.service.addUser(this.mail,this.nom,this.prenom,this.mdp,this.role).subscribe(res =>{
-  			this.fuckt = res;
+  	if(this.mail != "" && this.mdp != "" && this.nom != "" && this.prenom != ""){
+  		this.service.addUser(this.mail,this.nom,this.prenom,this.mdp).subscribe(res =>{
+  			this.added = res;
   		});
-  	/*this.service.getUsers().subscribe(res =>{
-  		this.listUsers = res;
-  	});*/
+	  	this.mail = "";
+	  	this.mdp = "";
+	  	this.nom = "";
+	  	this.prenom = "";
+	  	this.submitted = true;
+
+  	}
   }
 
 }
