@@ -13,7 +13,7 @@ export class RechercheComponent implements OnInit {
   private max: string;
   private semD: string;
   private semF : string;
-  private tags : Object [];
+  private tags : Object [] = [];
   private result : Object [];
   private submitted : boolean = false;
   constructor(private service: SearchBiensService) { }
@@ -22,6 +22,7 @@ export class RechercheComponent implements OnInit {
   	
   }
   onSubmit(){
+    //console.log(this.type+" "+this.nom+" "+this.min+" "+this.max+" "+this.semD+" "+this.semF+" "+this.tags);
   	if(this.type != "" && this.nom != "" && this.min != "" && this.max != "" && this.semD != "" && this.semF != ""){
   		this.service.getBiens(this.type,this.nom,this.min,this.max,this.semD,this.semF,this.tags).subscribe(res =>{
   			this.result = res;

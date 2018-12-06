@@ -31,6 +31,7 @@ export class LoginUserComponent implements OnInit {
   }
   logOut(){
   	this.isLogged = false;
+    localStorage.removeItem('user');
   }
 
 }

@@ -18,6 +18,7 @@ export class SearchBiensService {
   		url= url+"&tags="+tags[i];
   	}
   	let observable: Observable<any> = this.http.get(url);
+    console.log(observable);
   	return observable;
   }
 
