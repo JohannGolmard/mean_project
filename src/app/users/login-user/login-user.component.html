@@ -1,16 +1,18 @@
+<br />
+
 <div class="container">
-        <form class="form-inline" method="post" *ngIf="!isLogged" (ngSubmit)="onSubmit()">
-          <div class="form-group">
+        <form class="form" method="post" *ngIf="!isLogged" (ngSubmit)="onSubmit()">
+          <div class="form-group col-4" style="margin: 0 auto;">
             <label>Login </label>
 			      <input type="text" class="form-control" required placeholder="Mail" name="login" [(ngModel)]="login"/>
           </div>
 
-          <div class="form-group">
+          <div class="form-group col-4" style="margin: 0 auto;">
             <label class="">Password </label>
-			      <input type="password" class="form-control" required placeholder="Password" name="passwd" [(ngModel)]="passwd"/>
+			      <input type="password" class="form-control " required placeholder="Password" name="passwd" [(ngModel)]="passwd"/>
           </div>
-
-          <button type="submit" class="btn btn-success">Submit</button>
+          <br />
+          <button type="submit" class="btn btn-success">Connexion</button>
      
         </form>
 

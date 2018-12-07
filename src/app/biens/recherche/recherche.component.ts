@@ -22,13 +22,12 @@ export class RechercheComponent implements OnInit {
   	
   }
   onSubmit(){
-    //console.log(this.type+" "+this.nom+" "+this.min+" "+this.max+" "+this.semD+" "+this.semF+" "+this.tags);
   	if(this.type != "" && this.nom != "" && this.min != "" && this.max != "" && this.semD != "" && this.semF != ""){
   		this.service.getBiens(this.type,this.nom,this.min,this.max,this.semD,this.semF,this.tags).subscribe(res =>{
   			this.result = res;
+              this.submitted=true;
+              console.log(this.result[0]);
   		});
-  		this.submitted=true;
-  		console.log(this.result+" lawl");
 
   	}
   }

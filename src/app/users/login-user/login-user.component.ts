@@ -22,7 +22,7 @@ export class LoginUserComponent implements OnInit {
       this.service.loginIn(this.login,this.passwd).subscribe(res =>{
         this.resultat = res;
         if(this.resultat.length==1){
-        localStorage.setItem('user',this.login);
+        localStorage.setItem('user',JSON.stringify(this.resultat));
           this.isLogged = true;
         }
       });
