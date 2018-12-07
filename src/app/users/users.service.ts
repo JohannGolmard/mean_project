@@ -29,7 +29,7 @@ export class UsersService {
     return this.http.post(url,data);
   }
 
-  getBiensById(email:string): Observable<any>{
+  getBiensByEmail(email:string): Observable<any>{
       let data = {"idProprio":email};
       let url = "http://localhost:8888/biens";
       return this.http.post(url,data);
