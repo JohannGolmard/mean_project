@@ -22,8 +22,12 @@ export class ProfilUserComponent implements OnInit {
         this.prenom = item[0].prenom;
         this.email = item[0].email;
         this.service.getBiensByEmail(this.email).subscribe(res =>{
-			console.log(res);
-  		});
+			    this.biens = res;
+          this.service.getServicesByEmail(this.email).subscribe(res =>{
+            this.services = res;
+            console.log(res);
+          });
+  		  });
   }
 
 }

@@ -1,3 +1,71 @@
 <br />
 <h1>Profil de {{nom}}  {{prenom}}</h1>
+<div class="row">
+  <div class="table-responsive col-md-6">
+    <h3>Vos biens   <button type="button" class="btn btn-info btn-sm">+ajout</button></h3><br />
+    <table class=" table table-hover table-sm table-bordered ">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nom</th>
+        <th>Type</th>
+        <th>Descriptif</th>
+        <th>Prix neuf</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let bien of biens">
+        <td>{{bien.nom}}</td>
+        <td>{{bien.type}}</td>
+        <td>{{bien.descriptif}}</td>
+        <td>{{bien.prixNeuf}} €</td>
+      </tr>
+    </tbody><br />
+  </table>
+  </div>
+  <div class="table-responsive col-md-6">
+    <h3>Vos services    <button type="button" class="btn btn-info btn-sm">+ajout</button></h3><br />
+    <table class=" table table-hover table-sm table-bordered ">
+    <thead class="thead-dark">
+      <tr>
+        <th>Titre</th>
+        <th>Descriptif</th>
+        <th>Expérience</th>
+        <th>Prix service</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let service of services">
+        <td>{{service.titre}}</td>
+        <td>{{service.descriptif}}</td>
+        <td>{{service.experience}}</td>
+        <td>{{service.prixService}} €</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+<!--<div class="container">
+  <h3>Vos biens</h3><br />
+  <table class=" table table-responsive table-hover table-sm table-bordered ">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nom</th>
+        <th>Type</th>
+        <th>Descriptif</th>
+        <th>Prix neuf</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let bien of biens">
+        <td>{{bien.nom}}</td>
+        <td>{{bien.type}}</td>
+        <td>{{bien.descriptif}}</td>
+        <td>{{bien.prixNeuf}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>-->
+
 

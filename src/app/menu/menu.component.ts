@@ -23,7 +23,6 @@ export class MenuComponent implements OnInit, DoCheck {
         this.prenom = item[0].prenom;
   			this.isLogged=true;	
   		}
-  		console.log(this.login);
   }
   logOut(){
   	this.isLogged = false;

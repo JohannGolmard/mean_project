@@ -34,4 +34,10 @@ export class UsersService {
       let url = "http://localhost:8888/biens";
       return this.http.post(url,data);
   }
+
+  getServicesByEmail(email:string): Observable<any>{
+      let data = {"idProprio":email};
+      let url = "http://localhost:8888/services";
+      return this.http.post(url,data);
+  }
 }
