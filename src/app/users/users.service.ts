@@ -28,4 +28,10 @@ export class UsersService {
     let data = {"email":login, "mdp":mdp};
     return this.http.post(url,data);
   }
+
+  getBiensById(email:string): Observable<any>{
+      let data = {"idProprio":email};
+      let url = "http://localhost:8888/biens";
+      return this.http.post(url,data);
+  }
 }

@@ -21,7 +21,10 @@
       <div>
         <button  *ngIf="!isLogged" class="btn btn-secondary" [routerLink]="['/login']">Connexion</button>
       </div>
-    <button *ngIf="isLogged" class="btn btn-secondary" (click)="logOut()">Logout</button>
+    <div *ngIf="isLogged">
+      <button style="margin-right: 5px" class="btn btn-primary" [routerLink]="['/profil']">{{nom}} {{prenom}}</button>
+      <button  class="btn btn-secondary" (click)="logOut()">Logout</button>
+    </div>
     <!--<form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
