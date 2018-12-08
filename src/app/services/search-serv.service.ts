@@ -6,14 +6,13 @@ import { RequestOptions } from '@angular/http';
 @Injectable({
   providedIn: 'root'
 })
-export class SearchBiensService {
+export class SearchServService {
 
-  //private _options = new HttpHeaders({'Content-Type':'application/json'});
   constructor(private http: HttpClient) { }
 
-  getBiens(type: string,nom: string,min: string,max: string,semD: string,semF : string,tags : string): Observable<any>{
+  getService(titre: string,min: string,max: string,semD: string,semF : string,tags : string): Observable<any>{
   	
-  	let url = "http://localhost:8888/searchBien?type="+type+"&nom="+nom+"&min="+min+"&max="+max+"&semD="+semD+"&semF="+semF;
+  	let url = "http://localhost:8888/searchService?titre="+titre+"&min="+min+"&max="+max+"&semD="+semD+"&semF="+semF;
     let tag = tags.split(';');
   	for(let i=0;i<tag.length;i++){
   		url= url+"&tags="+tag[i];
@@ -21,6 +20,4 @@ export class SearchBiensService {
   	let observable: Observable<any> = this.http.get(url);
   	return observable;
   }
-
-
-  }
+}

@@ -37,11 +37,14 @@
           </div>
           <div class="form-group col-5">
             <label>Tags</label>
-    			   <textarea required class="form-control" name="tags" [(ngModel)]="tags"></textarea>
+    			   <textarea required class="form-control" name="tags" [(ngModel)]="tags" placeholder="Utilisez ; pour séparer les tags"></textarea>
           </div>
           <br>
-          <div class="form-group col-5">
-            <button *ngIf="!submitted" type="submit" class="btn btn-success">Envoyer</button>
+          <div *ngIf="!submitted" class="form-group col-5">
+            <button type="submit" class="btn btn-success">Envoyer</button>
+          </div>
+          <div *ngIf="submitted" class="form-group col-5">
+            <button type="submit" class="btn btn-success">Nouvelle recherche</button>
           </div>
         </form>
         <br>

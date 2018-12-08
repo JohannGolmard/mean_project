@@ -28,5 +28,4 @@ export class MenuComponent implements OnInit, DoCheck {
   	this.isLogged = false;
     localStorage.removeItem('user');
   }
-
 }

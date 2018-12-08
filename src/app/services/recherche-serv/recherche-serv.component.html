@@ -1,3 +1,61 @@
-<p>
-  recherche-serv works!
-</p>
+
+    <div class="container">
+        <form  method="post" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group col-sm-3"></div>
+            <div class="form-group col-sm-6">
+              <label>Titre</label>
+      			   <input type="text" required placeholder="titre" class="form-control" name="type" [(ngModel)]="titre"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-sm-2"></div>
+            <div class="form-group col-sm-2">
+             	<label>Min </label>
+      				<input type="number" required placeholder="min" class="form-control" name="min" [(ngModel)]="min" min="1" max="1000000" value="1"/>
+            </div>
+
+            <div class="form-group col-sm-2">
+              <label>Max</label>
+      			   <input type="number" required placeholder="max" class="form-control" name="max" [(ngModel)]="max" min="1" max="1000000" value="1000000"/>
+            </div>
+
+            <div class="form-group col-sm-2">
+              <label>SemD</label>
+      			   <input type="number" required placeholder="SemD" class="form-control col-xs-3" name="SemD" [(ngModel)]="semD" min="1" max="52" value="1"/>
+            </div>
+
+            <div class="form-group col-sm-2">
+              <label>SemF</label>
+      			   <input type="number" required placeholder="SemF" class="form-control" name="SemF" [(ngModel)]="semF" min="1" max="52" value="52"/>
+            </div>
+          </div>
+          <div class="form-group d-flex flex-column justify-content-center">
+            <label>Tags</label>
+    			  <textarea required class="form-control mx-auto col-5" name="tags" [(ngModel)]="tags" placeholder="Utilisez ; pour séparer les tags"></textarea>
+          </div>
+          <br>
+          <div *ngIf="!submitted" class="form-group d-flex justify-content-center">
+            <button type="submit" class="btn btn-success">Envoyer</button>
+          </div>
+          <div *ngIf="submitted" class="form-group d-flex justify-content-center">
+            <button type="submit" class="btn btn-success">Nouvelle recherche</button>
+          </div>
+        </form>
+        <br>
+        <br>
+        <div *ngIf="submitted">
+        	<table class="table table-striped">
+            <tr>
+              <th scope="col">Titre</th>
+              <th scope="col">Descriptif</th>
+              <th scope="col">Prix</th>
+            </tr>
+            <tr *ngFor="let res of result">
+              <td>{{res.titre}}</td>
+              <td>{{res.descriptif}}</td>
+              <td>{{res.prixService}}</td>
+            </tr>
+          </table>
+        </div>
+    </div>

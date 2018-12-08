@@ -9,12 +9,18 @@ import { ListUsersComponent } from './users/list-users/list-users.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
 import { LoginUserComponent } from './users/login-user/login-user.component';
 import { RechercheComponent } from './biens/recherche/recherche.component';
+import { RechercheServComponent } from './services/recherche-serv/recherche-serv.component';
 import { ProfilUserComponent } from './users/profil-user/profil-user.component';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
+  {
+   path:'', 
+   component: HomepageComponent
+  },
   {
    path:'subscription', 
    component: CreateUserComponent
@@ -30,6 +36,10 @@ const routes: Routes = [
   {
    path:'resBien',
    component: RechercheComponent
+  },
+  {
+   path:'resServ',
+   component: RechercheServComponent
   }
 ]
 
@@ -42,7 +52,9 @@ const routes: Routes = [
     LoginUserComponent,
     MenuComponent,
     RechercheComponent,
-    ProfilUserComponent
+    RechercheServComponent,
+    ProfilUserComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
