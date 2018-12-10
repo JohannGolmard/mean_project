@@ -12,12 +12,13 @@ export class SearchBiensService {
   constructor(private http: HttpClient) { }
 
   getBiens(type: string,nom: string,min: string,max: string,semD: string,semF : string,tags : string): Observable<any>{
-  	
   	let url = "http://localhost:8888/searchBien?type="+type+"&nom="+nom+"&min="+min+"&max="+max+"&semD="+semD+"&semF="+semF;
-    let tag = tags.split(';');
-  	for(let i=0;i<tag.length;i++){
-  		url= url+"&tags="+tag[i];
-  	}
+    if(tags!=""){
+      let tag = tags.split(';');
+    	for(let i=0;i<tag.length;i++){
+    		url= url+"&tags="+tag[i];
+    	}
+    }
   	let observable: Observable<any> = this.http.get(url);
   	return observable;
   }

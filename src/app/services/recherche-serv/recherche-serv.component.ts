@@ -12,7 +12,7 @@ export class RechercheServComponent implements OnInit {
   private max: string;
   private semD: string;
   private semF : string;
-  private tags : string;
+  private tags : string = "";
   private result : Object [];
   private submitted : boolean = false;
 

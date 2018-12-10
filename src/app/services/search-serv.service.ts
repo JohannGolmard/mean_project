@@ -14,9 +14,12 @@ export class SearchServService {
   	
   	let url = "http://localhost:8888/searchService?titre="+titre+"&min="+min+"&max="+max+"&semD="+semD+"&semF="+semF;
     let tag = tags.split(';');
-  	for(let i=0;i<tag.length;i++){
-  		url= url+"&tags="+tag[i];
-  	}
+  	if(tags!=""){
+      let tag = tags.split(';');
+      for(let i=0;i<tag.length;i++){
+        url= url+"&tags="+tag[i];
+      }
+    }
   	let observable: Observable<any> = this.http.get(url);
   	return observable;
   }
