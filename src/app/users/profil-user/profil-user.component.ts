@@ -25,7 +25,6 @@ export class ProfilUserComponent implements OnInit {
 			    this.biens = res;
           this.service.getServicesByEmail(this.email).subscribe(res =>{
             this.services = res;
-            console.log(res);
           });
   		  });
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-user',
@@ -12,7 +13,7 @@ export class LoginUserComponent implements OnInit {
   private passwd : string;
   public isLogged : boolean = false;
   private resultat : Object[];
-  constructor(private service: UsersService) { }
+  constructor(private service: UsersService,private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,6 +25,7 @@ export class LoginUserComponent implements OnInit {
         if(this.resultat.length==1){
         localStorage.setItem('user',JSON.stringify(this.resultat));
           this.isLogged = true;
+          this.router.navigate(['/profil']);
         }
       });
   	}
