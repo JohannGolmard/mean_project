@@ -11,8 +11,8 @@ export class ProfilUserComponent implements OnInit {
   private nom: string;
   private prenom: string;
   private email: string;
-  private biens : Object[];
-  private services : Object[];
+  private biens : Object[] = [];
+  private services : Object[] = [];
 
   constructor(private service: UsersService) { }
 

@@ -9,10 +9,10 @@ import { SearchBiensService } from '../search-biens.service'
 export class RechercheComponent implements OnInit {
   private type: string;
   private nom: string;
-  private min: string;
-  private max: string;
-  private semD: string;
-  private semF : string;
+  private min: number=1;
+  private max: number=1000000;
+  private semD: number=1;
+  private semF : number=52;
   private tags : string = "";
   private result : Object [];
   private submitted : boolean = false;
@@ -22,7 +22,7 @@ export class RechercheComponent implements OnInit {
   	
   }
   onSubmit(){
-  	if(this.type != "" && this.nom != "" && this.min != "" && this.max != "" && this.semD != "" && this.semF != ""){
+  	if(this.type != undefined && this.nom != undefined && this.min != undefined && this.max != undefined && this.semD != undefined && this.semF != undefined){
   		this.service.getBiens(this.type,this.nom,this.min,this.max,this.semD,this.semF,this.tags).subscribe(res =>{
   			this.result = res;
               this.submitted=true;

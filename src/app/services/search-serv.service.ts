@@ -10,7 +10,7 @@ export class SearchServService {
 
   constructor(private http: HttpClient) { }
 
-  getService(titre: string,min: string,max: string,semD: string,semF : string,tags : string): Observable<any>{
+  getService(titre: string,min: number,max: number,semD: number,semF : number,tags : string): Observable<any>{
   	
   	let url = "http://localhost:8888/searchService?titre="+titre+"&min="+min+"&max="+max+"&semD="+semD+"&semF="+semF;
     let tag = tags.split(';');
