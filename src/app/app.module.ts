@@ -15,6 +15,9 @@ import { ProfilUserComponent } from './users/profil-user/profil-user.component';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AdminPageComponent } from './admin/admin-page/admin-page.component';
+import { GuardUsersService } from './users/guard-users.service';
+import { GuardAdminService } from './admin/guard-admin.service';
 
 const routes: Routes = [
   {
@@ -27,7 +30,8 @@ const routes: Routes = [
   },
   {
    path:'profil',
-   component: ProfilUserComponent
+   component: ProfilUserComponent,
+   canActivate: [GuardUsersService]
   },
   {
    path:'login',
@@ -35,11 +39,18 @@ const routes: Routes = [
   },
   {
    path:'resBien',
-   component: RechercheComponent
+   component: RechercheComponent,
+   canActivate: [GuardUsersService]
   },
   {
    path:'resServ',
-   component: RechercheServComponent
+   component: RechercheServComponent,
+   canActivate: [GuardUsersService]
+  },
+  {
+   path:'admin',
+   component: AdminPageComponent,
+   canActivate: [GuardAdminService]
   }
 ]
 
@@ -54,7 +65,8 @@ const routes: Routes = [
     RechercheComponent,
     RechercheServComponent,
     ProfilUserComponent,
-    HomepageComponent
+    HomepageComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +77,7 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [],
+  providers: [GuardUsersService,GuardAdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

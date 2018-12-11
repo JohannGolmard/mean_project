@@ -21,7 +21,7 @@ export class CreateUserComponent implements OnInit {
   }
   private added : Object[];
   onSubmit(){
-  	if(this.mail != "" && this.mdp != "" && this.nom != "" && this.prenom != ""){
+  	if(this.mail != undefined && this.mdp != undefined && this.nom != undefined && this.prenom != undefined){
   		this.service.addUser(this.mail,this.nom,this.prenom,this.mdp).subscribe(res =>{
   			this.added = res;
   		});

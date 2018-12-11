@@ -19,7 +19,7 @@ export class LoginUserComponent implements OnInit {
   }
   onSubmit(){
 
-  	if(this.login != "" && this.passwd != null){
+  	if(this.login != null && this.passwd != null){
       this.service.loginIn(this.login,this.passwd).subscribe(res =>{
         this.resultat = res;
         if(this.resultat.length==1){

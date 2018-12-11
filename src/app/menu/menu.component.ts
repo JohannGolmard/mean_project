@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit, DoCheck {
   private prenom: string;
   private login: string;
   private isLogged: boolean = false;
+  private isAdmin: boolean = false;
   constructor() { }
 
   ngOnInit() {
@@ -22,10 +23,14 @@ export class MenuComponent implements OnInit, DoCheck {
         this.nom = item[0].nom;
         this.prenom = item[0].prenom;
   			this.isLogged=true;	
+        if(item[0].role == "admin"){
+          this.isAdmin=true;
+        }
   		}
   }
   logOut(){
   	this.isLogged = false;
     localStorage.removeItem('user');
+    this.isAdmin=false;
   }
 }

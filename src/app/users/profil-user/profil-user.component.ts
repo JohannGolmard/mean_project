@@ -12,15 +12,17 @@ export class ProfilUserComponent implements OnInit {
   private prenom: string;
   private email: string;
   private biens : Object[] = [];
+  private role : string;
   private services : Object[] = [];
 
   constructor(private service: UsersService) { }
 
   ngOnInit() {
-		let item = JSON.parse(localStorage.getItem('user'))
+		let item = JSON.parse(localStorage.getItem('user'));
         this.nom = item[0].nom;
         this.prenom = item[0].prenom;
         this.email = item[0].email;
+        this.role = item[0].role;
         this.service.getBiensByEmail(this.email).subscribe(res =>{
 			    this.biens = res;
           this.service.getServicesByEmail(this.email).subscribe(res =>{
