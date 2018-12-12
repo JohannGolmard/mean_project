@@ -16,9 +16,10 @@ export class UsersService {
   		let observable: Observable<any> = this.http.get("http://localhost:8888/users");
   		return observable;
   }
-  addUser(mail:string, nom:string, prenom:string, mdp:string): Observable<any> {
+  addUser(mail:string, nom:string, prenom:string, mdp:string, ville:string, adresse:string, cp:string): Observable<any> {
   		let url= "http://localhost:8888/addUsers"
-  		let data = {"email":mail,"nom":nom,"prenom":prenom, "mdp":mdp};
+  		let data = {"email":mail,"nom":nom,"prenom":prenom, "mdp":mdp,"ville":ville,
+    "adresse":adresse,"cp":cp,"rapport":"50"};
   		//let options = new RequestOptions({headers:this._options});
 
   		return this.http.post(url,data);

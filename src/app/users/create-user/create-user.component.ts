@@ -14,21 +14,28 @@ export class CreateUserComponent implements OnInit {
   private mdp: string;
   private nom: string;
   private prenom: string;
+  private ville: string;
+  private adresse: string;
+  private cp: string;
+
   private submitted : boolean=false;
-  constructor(private service: UsersService) { }
+  constructor(private service: UsersService) {}
 
   ngOnInit() {
   }
   private added : Object[];
   onSubmit(){
-  	if(this.mail != undefined && this.mdp != undefined && this.nom != undefined && this.prenom != undefined){
-  		this.service.addUser(this.mail,this.nom,this.prenom,this.mdp).subscribe(res =>{
+  	if(this.mail != undefined && this.mdp != undefined && this.nom != undefined && this.prenom != undefined && this.ville != undefined && this.adresse != undefined && this.cp != undefined){
+  		this.service.addUser(this.mail,this.nom,this.prenom,this.mdp,this.ville,this.adresse,this.cp).subscribe(res =>{
   			this.added = res;
   		});
 	  	this.mail = "";
 	  	this.mdp = "";
 	  	this.nom = "";
 	  	this.prenom = "";
+      this.ville = "";
+      this.adresse = "";
+      this.cp = "";
 	  	this.submitted = true;
 
   	}
