@@ -1,56 +1,42 @@
+<br />
 <h1>Formulaire d'inscription</h1>
-<!--<form method="post" (ngSubmit)="onSubmit()">
-	<label>Login</label>
-	<input type="text" name="login" [(ngModel)]="mail"/>
-	<label>mdp</label>
-	<input type="text" name="mdp" [(ngModel)]="mdp"/>
-	<label>nom</label>
-	<input type="text" name="nom" [(ngModel)]="nom"/>
-	<label>prenom</label>
-	<input type="text" name="prenom" [(ngModel)]="prenom"/>
-	<label>role</label>
-	<input type="text" name="role" [(ngModel)]="role"/>
-
-	<button type="submit">Envoyer</button>
-</form>-->
-
-
+<br />
     <div class="container">
-        <form  method="post" *ngIf="!submitted" (ngSubmit)="onSubmit()">
-          <div class="form-group">
+        <form class="form" method="post" *ngIf="!submitted" (ngSubmit)="onSubmit()">
+          <div class="form-group col-4" style="margin: 0 auto;">
             <label>Login (email) </label>
     			   <input type="text" required placeholder="votre email" class="form-control" name="login" [(ngModel)]="mail"/>
-          </div>
+          </div><br />
 
-          <div class="form-group">
+          <div class="form-group col-4" style="margin: 0 auto;">
             <label>Mot de passe </label>
     			   <input type="password" required placeholder="votre mot de passe" class="form-control" name="mdp" [(ngModel)]="mdp"/>
-          </div>
+          </div><br />
 
-          <div class="form-group">
+          <div class="form-group col-4" style="margin: 0 auto;">
            	<label>Nom </label>
     				<input type="text" required placeholder="votre nom" class="form-control" name="nom" [(ngModel)]="nom"/>
-          </div>
+          </div><br />
 
-          <div class="form-group">
+          <div class="form-group col-4" style="margin: 0 auto;">
             <label>Prenom</label>
     			   <input type="text" required placeholder="votre prenom" class="form-control" name="prenom" [(ngModel)]="prenom"/>
-          </div>
+          </div><br />
 
-          <div class="form-group">
+          <div class="form-group col-4" style="margin: 0 auto;">
             <label>Ville</label>
              <input type="text" required placeholder="votre ville" class="form-control" name="ville" [(ngModel)]="ville"/>
-          </div>
+          </div><br />
 
-          <div class="form-group">
+          <div class="form-group col-4" style="margin: 0 auto;">
             <label>Adresse</label>
              <input type="text" required placeholder="votre adresse" class="form-control" name="adresse" [(ngModel)]="adresse"/>
-          </div>
+          </div><br />
 
-          <div class="form-group">
+          <div class="form-group col-4" style="margin: 0 auto;">
             <label>Code postal</label>
              <input type="text" required placeholder="votre code postal" class="form-control" name="cp" [(ngModel)]="cp"/>
-          </div>
+          </div><br />
          
           <button type="submit" class="btn btn-success">Submit</button>
      
