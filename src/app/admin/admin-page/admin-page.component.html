@@ -1,3 +1,18 @@
-<p>
-  admin-page works!
-</p>
+<div>
+	<p>Liste des membres pour le déséquilibre : </p>
+  <table class="table table-striped">
+  	<thead class="thead-dark">
+            <tr>
+              <th scope="col">Nom</th>
+              <th scope="col">Email</th>
+              <th scope="col">Rapport</th>
+            </tr>
+        </thead>
+            <tr *ngFor="let res of listUsers">
+              <td>{{res.nom}}</td>
+              <td>{{res.email}}</td>
+              <td>{{res.rapport}}</td>
+            </tr>
+    </table>
+</div>
+
