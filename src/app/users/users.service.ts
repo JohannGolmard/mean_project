@@ -30,6 +30,11 @@ export class UsersService {
     return this.http.post(url,data);
   }
 
+  getTag(): Observable<any>{
+      let url = "http://localhost:8888/tags";
+      return this.http.post(url,{});
+  }
+
   getBiensByEmail(email:string): Observable<any>{
       let data = {"idProprio":email};
       let url = "http://localhost:8888/biens";
