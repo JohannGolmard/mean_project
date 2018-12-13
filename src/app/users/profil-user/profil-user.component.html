@@ -10,6 +10,7 @@
         <th>Type</th>
         <th>Descriptif</th>
         <th>Prix neuf</th>
+        <th>Supprimer</th>
       </tr>
     </thead>
     <tbody >
@@ -18,6 +19,7 @@
         <td>{{bien.type}}</td>
         <td>{{bien.descriptif}}</td>
         <td>{{bien.prixNeuf}} €</td>
+        <td><button  class="btn btn-danger btn-sm" (click)="supprimerBien(bien.idBien)">Supprimer</button></td>
       </tr>
     </tbody><br />
   </table>
@@ -31,6 +33,7 @@
         <th>Descriptif</th>
         <th>Expérience</th>
         <th>Prix service</th>
+        <th>Supprimer</th>
       </tr>
     </thead>
     <tbody >
@@ -39,6 +42,7 @@
         <td>{{service.descriptif}}</td>
         <td>{{service.experience}}</td>
         <td>{{service.prixService}} €</td>
+        <td><button  class="btn btn-danger btn-sm" (click)="supprimerService(service.idService)">Supprimer</button></td>
       </tr>
     </tbody>
   </table>
