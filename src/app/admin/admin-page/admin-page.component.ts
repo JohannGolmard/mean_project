@@ -17,8 +17,9 @@ export class AdminPageComponent implements OnInit {
   			this.listUsers = res;
   			console.log(this.listUsers);
   		});
-  	});
 
+  	});
+  	
   	
   }
 

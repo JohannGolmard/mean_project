@@ -8,11 +8,18 @@
               <th scope="col">Rapport</th>
             </tr>
         </thead>
-            <tr *ngFor="let res of listUsers">
+        <ng-container *ngFor="let res of listUsers">
+            <tr *ngIf="res.aNotifier" class="table-danger">
               <td>{{res.nom}}</td>
               <td>{{res.email}}</td>
               <td>{{res.rapport}}</td>
             </tr>
+            <tr *ngIf="!res.aNotifier" class="">
+              <td>{{res.nom}}</td>
+              <td>{{res.email}}</td>
+              <td>{{res.rapport}}</td>
+            </tr>
+        </ng-container>
     </table>
 </div>
 
