@@ -41,7 +41,9 @@
           <button type="submit" class="btn btn-success">Submit</button>
      
         </form>
-
+        <div *ngIf="!notAdded">
+          <label>Cet email/login est déjà utilisé </label>
+        </div>
 
         <div *ngIf="submitted">
           <br/>
