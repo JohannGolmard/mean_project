@@ -1,13 +1,77 @@
 <br />
 <h1>Profil de {{nom}}  {{prenom}}</h1>
 <div class="row">
+  <div class="col-md-6">
+    <h5>Afficher le formulaire d'ajout d'un bien</h5>
+    <button *ngIf="!afficherFormBien" type="button" (click)="formBien()" class="btn btn-primary btn-sm">Afficher</button>
+    <div *ngIf="afficherFormBien">
+     <button  type="button" (click)="formBien()" class="btn btn-primary btn-sm">Cacher</button>
+     <br />
+
+      <form class="" method="post" (ngSubmit)="addBien()">
+          <div class="form-row">
+            <div class="form-group col-sm-2"></div>
+            <div>
+              <label>Nom </label>
+               <input type="text" required placeholder="nom" class="form-control" name="nom" [(ngModel)]="nomBien"/>
+            </div>
+            <div class="form-group col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <label>Prix</label>
+               <input type="number" required placeholder="prix" class="form-control" name="prix" [(ngModel)]="prix"/>
+            </div>
+
+            <div class="form-group col-sm-4"></div>
+            <div>
+              <label>Descriptif </label>
+              <textarea required class="form-control" name="descriptif" [(ngModel)]="descriptif" placeholder="Description"></textarea>
+            </div>
+            <br />
+            <div class="form-group col-sm-1"></div>
+            <div class="form-group col-sm-3"></div>
+            <br /><br /><br /><br /><br />
+
+            <div class="form-group form-group col-sm-6">
+              <br /> <br />
+              <select class="selectpicker" style="width:80%;" multiple  [(ngModel)]="selected_tag" [value]="tag" name="selected" >
+                <option *ngFor="let tag of les_tags" [value]="tag.nom">{{tag.nom}}</option>
+              </select>
+              <br />
+              <button  (click)="ajoutTagBien()" class="btn btn-info btn-sm col-sm-4">Ajouter tags</button>
+            </div> 
+            <div class="form-group col-sm-3">
+              <label>Tags sélectionnés</label>
+              <textarea cols="30" rows="5" type="text" [value]="les_tags_biens" readonly="true"></textarea>
+            </div>
+
+
+
+          </div>     
+      </form>
+
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <h5>Afficher le formulaire d'ajout d'un service</h5>
+    <button *ngIf="!afficherFormService" type="button" (click)="formService()" class="btn btn-primary btn-sm">Afficher</button>
+    <div *ngIf="afficherFormService">
+      <button type="button" (click)="formService()" class="btn btn-primary btn-sm">Cacher</button>
+      <br />
+     </div>
+  </div>
+</div>
+
+<br />
+<br />
+
+<div class="row">
   <div class="table-responsive col-md-6">
-    <h3>Vos biens   <button type="button" class="btn btn-info btn-sm">Ajout</button></h3><br />
+    <h3>Vos biens</h3><br />
     <table class=" table table-hover table-sm table-bordered ">
     <thead class="thead-dark">
       <tr>
         <th>Nom</th>
-        <th>Type</th>
         <th>Descriptif</th>
         <th>Prix neuf</th>
         <th>Supprimer</th>
@@ -16,7 +80,6 @@
     <tbody >
       <tr *ngFor="let bien of biens">
         <td>{{bien.nom}}</td>
-        <td>{{bien.type}}</td>
         <td>{{bien.descriptif}}</td>
         <td>{{bien.prixNeuf}} €</td>
         <td><button  class="btn btn-danger btn-sm" (click)="supprimerBien(bien.idBien)">Supprimer</button></td>
@@ -25,7 +88,7 @@
   </table>
   </div>
   <div class="table-responsive col-md-6">
-    <h3>Vos services    <button type="button" class="btn btn-info btn-sm">Ajout</button></h3><br />
+    <h3>Vos services</h3><br />
     <table class=" table table-hover table-sm table-bordered ">
     <thead class="thead-dark">
       <tr>
@@ -48,28 +111,3 @@
   </table>
   </div>
 </div>
-
-
-<!--<div class="container">
-  <h3>Vos biens</h3><br />
-  <table class=" table table-responsive table-hover table-sm table-bordered ">
-    <thead class="thead-dark">
-      <tr>
-        <th>Nom</th>
-        <th>Type</th>
-        <th>Descriptif</th>
-        <th>Prix neuf</th>
-      </tr>
-    </thead>
-    <tbody >
-      <tr *ngFor="let bien of biens">
-        <td>{{bien.nom}}</td>
-        <td>{{bien.type}}</td>
-        <td>{{bien.descriptif}}</td>
-        <td>{{bien.prixNeuf}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>-->
-
-
