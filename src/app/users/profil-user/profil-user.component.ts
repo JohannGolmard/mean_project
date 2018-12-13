@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil-user',
@@ -15,7 +16,7 @@ export class ProfilUserComponent implements OnInit {
   private role : string;
   private services : Object[] = [];
 
-  constructor(private service: UsersService) { }
+  constructor(private service: UsersService,private router: Router) { }
 
   ngOnInit() {
 		let item = JSON.parse(localStorage.getItem('user'));
@@ -29,6 +30,15 @@ export class ProfilUserComponent implements OnInit {
             this.services = res;
           });
   		  });
+  }
+
+  supprimerBien(id:string){
+    this.service.deleteBien(id).subscribe(res =>{
+    });
+  }
+
+  supprimerService(id:string){
+    this.service.deleteService(id).subscribe(res =>{});
   }
 
 }

@@ -41,4 +41,16 @@ export class UsersService {
       let url = "http://localhost:8888/services";
       return this.http.post(url,data);
   }
+
+  deleteBien(id:string): Observable<any>{
+    let data = {"idBien":id};
+    let url = "http://localhost:8888/removeBiens";
+    return this.http.post(url,data);
+  }
+
+  deleteService(id:string): Observable<any>{
+    let data = {"idService":id};
+    let url = "http://localhost:8888/removeServices";
+    return this.http.post(url,data);
+  }
 }
