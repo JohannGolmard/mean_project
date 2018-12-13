@@ -8,7 +8,7 @@
      <button  type="button" (click)="formBien()" class="btn btn-primary btn-sm">Cacher</button>
      <br />
 
-      <form class="" method="post" (ngSubmit)="addBien()">
+      <form method="post" (ngSubmit)="addBien()">
           <div class="form-row">
             <div class="form-group col-sm-2"></div>
             <div>
@@ -43,10 +43,8 @@
               <label>Tags sélectionnés</label>
               <textarea cols="30" rows="5" type="text" [value]="les_tags_biens" readonly="true"></textarea>
             </div>
-
-
-
-          </div>     
+          </div>
+          <button  (click)="addBien()" class="btn btn-primary btn-sm col-sm-4">Ajouter le bien !</button>
       </form>
 
     </div>
