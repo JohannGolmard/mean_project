@@ -10,9 +10,9 @@ export class SearchServService {
 
   constructor(private http: HttpClient) { }
 
-  getService(titre: string,min: number,max: number,semD: number,semF : number,tags : string): Observable<any>{
+  getService(titre: string,min: number,max: number,jourD: string,jourF : string,tags : string): Observable<any>{
   	
-  	let url = "http://localhost:8888/searchService?titre="+titre+"&min="+min+"&max="+max+"&semD="+semD+"&semF="+semF;
+  	let url = "http://localhost:8888/searchService?titre="+titre+"&min="+min+"&max="+max+"&jourD="+jourD+"&jourF="+jourF;
     let tag = tags.split(';');
   	if(tags!=""){
       let tag = tags.split(';');

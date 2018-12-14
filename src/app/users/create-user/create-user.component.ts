@@ -30,10 +30,11 @@ export class CreateUserComponent implements OnInit {
   		this.service.addUser(this.mail,this.nom,this.prenom,this.mdp,this.ville,this.adresse,this.cp).subscribe(res =>{
   			console.log(res);
         if(res!="Inscription réussie"){
-          this.submitted = true;
+          this.notAdded=false;
         }
         else{
-          this.notAdded=false;
+          this.submitted = true;
+          this.notAdded=true;
         }
   		});
 	  	this.mail = "";
