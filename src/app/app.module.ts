@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { UsersModule } from './users/users.module';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes,RouterModule } from '@angular/router';
-import * as $ from 'jquery';
 import { ListUsersComponent } from './users/list-users/list-users.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
 import { LoginUserComponent } from './users/login-user/login-user.component';
@@ -19,6 +18,11 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AdminPageComponent } from './admin/admin-page/admin-page.component';
 import { GuardUsersService } from './users/guard-users.service';
 import { GuardAdminService } from './admin/guard-admin.service';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr, 'fr');
 
 const routes: Routes = [
   {
@@ -79,7 +83,7 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [GuardUsersService,GuardAdminService],
+  providers: [GuardUsersService,GuardAdminService,{ provide: LOCALE_ID, useValue: 'fr' } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
