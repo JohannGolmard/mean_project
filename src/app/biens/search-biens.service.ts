@@ -11,15 +11,14 @@ export class SearchBiensService {
   //private _options = new HttpHeaders({'Content-Type':'application/json'});
   constructor(private http: HttpClient) { }
 
-  getBiens(type: string,nom: string,min: number,max: number,semD: number,semF : number,tags : string): Observable<any>{
-  	let url = "http://localhost:8888/searchBien?type="+type+"&nom="+nom+"&min="+min+"&max="+max+"&semD="+semD+"&semF="+semF;
+  getBiens(type: string,nom: string,min: number,max: number,jourD: string,jourF : string,tags : string): Observable<any>{
+  	let url = "http://localhost:8888/searchBien?type="+type+"&nom="+nom+"&min="+min+"&max="+max+"&jourD="+jourD+"&jourF="+jourF;
     if(tags!=""){
       let tag = tags.split(';');
     	for(let i=0;i<tag.length;i++){
     		url= url+"&tags="+tag[i];
     	}
     }
-    console.log(url);
   	let observable: Observable<any> = this.http.get(url);
   	return observable;
   }

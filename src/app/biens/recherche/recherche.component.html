@@ -26,13 +26,13 @@
             </div>
 
             <div class="form-group col-sm-2">
-              <label>SemD</label>
-      			   <input type="number" required placeholder="SemD" class="form-control col-xs-3" name="SemD" [(ngModel)]="semD" min="1" max="52"/>
+              <label>Date début</label>
+              <input type="text" class="form-control" placeholder="dd/mm/aaaa" [(ngModel)]="jourD" name="ddp" ngbDatepicker #dd="ngbDatepicker" (click)="dd.toggle()"/>
             </div>
 
             <div class="form-group col-sm-2">
-              <label>SemF</label>
-      			   <input type="number" required placeholder="SemF" class="form-control" name="SemF" [(ngModel)]="semF" min="1" max="52"/>
+              <label>Date fin</label>
+      			   <input type="text" class="form-control" placeholder="dd/mm/aaaa" [(ngModel)]="jourF" name="dfp" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()"/>
             </div>
           </div>
           <div class="form-group col-5">
