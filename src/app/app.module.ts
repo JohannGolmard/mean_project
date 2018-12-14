@@ -11,6 +11,7 @@ import { LoginUserComponent } from './users/login-user/login-user.component';
 import { RechercheComponent } from './biens/recherche/recherche.component';
 import { RechercheServComponent } from './services/recherche-serv/recherche-serv.component';
 import { ProfilUserComponent } from './users/profil-user/profil-user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -71,6 +72,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgbModule,
     FormsModule,
     RouterModule.forRoot(routes)
   ],

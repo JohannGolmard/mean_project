@@ -47,7 +47,7 @@
 
             <div class="form-group col-sm-6">
                <br /><br />
-               <p><input type="text" id="datepicker"></p>
+               <p><input type="text" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"/></p>
                <button  (click)="ajoutDateBien()" class="btn btn-info btn-sm ">Ajouter Date</button>
 
             
