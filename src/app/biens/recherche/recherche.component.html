@@ -2,13 +2,9 @@
     <div class="container">
         <form  method="post" (ngSubmit)="onSubmit()">
           <div class="form-row">
-            <div class="form-group col-sm-3"></div>
-            <div class="form-group col-sm-3">
-              <label>Type </label>
-      			   <input type="text" required placeholder="type" class="form-control" name="type" [(ngModel)]="type"/>
-            </div>
+            <div class="form-group col-sm-4"></div>
 
-            <div class="form-group col-sm-3">
+            <div class="form-group col-sm-4">
               <label>Nom </label>
       			   <input type="text" required placeholder="nom" class="form-control" name="nom" [(ngModel)]="nom"/>
             </div>
@@ -27,12 +23,12 @@
 
             <div class="form-group col-sm-2">
               <label>Date début</label>
-              <input type="text" class="form-control" placeholder="dd/mm/aaaa" [(ngModel)]="jourD" name="ddp" ngbDatepicker #dd="ngbDatepicker" (click)="dd.toggle()"/>
+              <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourD" name="ddp" ngbDatepicker #dd="ngbDatepicker" (click)="dd.toggle()"/>
             </div>
 
             <div class="form-group col-sm-2">
               <label>Date fin</label>
-      			   <input type="text" class="form-control" placeholder="dd/mm/aaaa" [(ngModel)]="jourF" name="dfp" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()"/>
+      			   <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourF" name="dfp" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()"/>
             </div>
           </div>
           <div class="form-group col-5">
@@ -50,7 +46,10 @@
         <br>
         <br>
         <div *ngIf="submitted">
-        	<table class="table table-striped">
+          <ngb-alert *ngIf="result.length==0" [dismissible]="false" type="warning">
+              <strong>Aucun résultat !</strong>
+          </ngb-alert>
+        	<table *ngIf="!result.length==0" class="table table-striped">
             <tr>
               <th scope="col">Nom</th>
               <th scope="col">Descriptif</th>

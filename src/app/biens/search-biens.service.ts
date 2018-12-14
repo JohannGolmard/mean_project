@@ -11,8 +11,8 @@ export class SearchBiensService {
   //private _options = new HttpHeaders({'Content-Type':'application/json'});
   constructor(private http: HttpClient) { }
 
-  getBiens(type: string,nom: string,min: number,max: number,jourD: string,jourF : string,tags : string): Observable<any>{
-  	let url = "http://localhost:8888/searchBien?type="+type+"&nom="+nom+"&min="+min+"&max="+max+"&jourD="+jourD+"&jourF="+jourF;
+  getBiens(nom: string,min: number,max: number,jourD: string,jourF : string,tags : string): Observable<any>{
+  	let url = "http://localhost:8888/searchBien?nom="+nom+"&min="+min+"&max="+max+"&jourD="+jourD+"&jourF="+jourF;
     if(tags!=""){
       let tag = tags.split(';');
     	for(let i=0;i<tag.length;i++){

@@ -22,12 +22,12 @@
 
             <div class="form-group col-sm-2">
               <label>Date début</label>
-      			   <input type="text" class="form-control" placeholder="dd/mm/aaaa" [(ngModel)]="jourD" name="ddp" ngbDatepicker #dd="ngbDatepicker" (click)="dd.toggle()"/>
+      			   <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourD" name="ddp" ngbDatepicker #dd="ngbDatepicker" (click)="dd.toggle()"/>
             </div>
 
             <div class="form-group col-sm-2">
               <label>Date fin</label>
-      			   <input type="text" class="form-control" placeholder="dd/mm/aaaa" [(ngModel)]="jourF" name="dfp" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()"/>
+      			   <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourF" name="dfp" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()"/>
             </div>
           </div>
           <div class="form-group d-flex flex-column justify-content-center">
@@ -45,7 +45,10 @@
         <br>
         <br>
         <div *ngIf="submitted">
-        	<table class="table table-striped">
+          <ngb-alert *ngIf="result.length==0" [dismissible]="false" type="warning">
+              <strong>Aucun résultat !</strong>
+          </ngb-alert>
+        	<table *ngIf="!result.length==0" class="table table-striped">
             <tr>
               <th scope="col">Titre</th>
               <th scope="col">Descriptif</th>
