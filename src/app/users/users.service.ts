@@ -24,6 +24,17 @@ export class UsersService {
 
   		return this.http.post(url,data);
   }
+
+  addBien(data): Observable<any>{
+    let url = "http://localhost:8888/addBiens";
+    return this.http.post(url,data);
+  }
+
+  addDispo(data): Observable<any>{
+    let url = "http://localhost:8888/dateBiens";
+    return this.http.post(url,data);
+  }
+
   loginIn(login:string, mdp:string): Observable<any> {
     let url = "http://localhost:8888/login";
     let data = {"email":login, "mdp":mdp};
@@ -34,6 +45,7 @@ export class UsersService {
       let url = "http://localhost:8888/tags";
       return this.http.post(url,{});
   }
+
 
   getBiensByEmail(email:string): Observable<any>{
       let data = {"idProprio":email};

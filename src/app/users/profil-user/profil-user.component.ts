@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
 })
 export class ProfilUserComponent implements OnInit {
 
-  private afficherFormBien : boolean =true; // false pour cacher true pour afficher
+  private afficherFormBien : boolean =false; // false pour cacher true pour afficher
   private afficherFormService : boolean =false;
 
   //formulaire bien
   private nomBien : string;
   private descriptif : string;
   private prix: number =1;
-  private tags: Array<number>;
+  private tags_bien: Array<number>=[];
   private amBien: boolean =true;
 
   //info utilisateur
@@ -28,9 +28,9 @@ export class ProfilUserComponent implements OnInit {
   private services : Object[] = [];
 
   private les_tags : Object[];
-  private les_tags_biens : Object[] =[];
-  private les_tags_services : Object[];
-  private selected_tag : Object[];
+  private les_tags_biens_name : Object[] =[];
+  private les_tags_services_name : Object[];
+  private selected_tag;
 
   private la_date_choisi;
   private date_biens : Object[] =[];
@@ -39,8 +39,26 @@ export class ProfilUserComponent implements OnInit {
   constructor(private service: UsersService,private router: Router) { }
 
   addBien(){
+  	if(this.nomBien!="" && this.descriptif!="" && this.date_biens.length!=0){
+  		let leBien = {"idProprio":this.email,"nom":this.nomBien,"descriptif":this.descriptif,"prixNeuf":this.prix,"tags":this.tags_bien};
+		this.service.addBien(leBien).subscribe(res =>{
+			let iDBien = res;
+			let data;
+			let date;
+			let pmAm;
+			let dateCourante : string;
+			for(let i = 0 ; i<this.date_biens.length;i++){
+				dateCourante=this.date_biens[i].toString();
+				date = dateCourante.slice(0, 10);
+				pmAm=dateCourante.slice(11, 13);
+				data={"idBien":iDBien.toString(),"date":date,"AMPM":pmAm}; 
+				this.service.addDispo(data).subscribe(res =>{});
+			}
+		  	this.update();
+  			this.reset();
+		});
+  	}
 
-  this.reset();
   }
 
   formBien(){
@@ -58,8 +76,10 @@ export class ProfilUserComponent implements OnInit {
   }
 
   ngOnInit() {
-		this.les_tags_biens=[];
-		this.les_tags_services=[];
+	  	this.nomBien="";
+		this.descriptif="";
+		this.les_tags_biens_name=[];
+		this.les_tags_services_name=[];
 		let item = JSON.parse(localStorage.getItem('user'));
         this.nom = item[0].nom;
         this.prenom = item[0].prenom;
@@ -82,9 +102,9 @@ export class ProfilUserComponent implements OnInit {
 	  this.descriptif="";
 	  this.prix=1;
 	  this.amBien=true;
-	  this.tags=[];
-	  this.les_tags_biens=[];
-	  this.les_tags_services=[];
+	  this.tags_bien=[];
+	  this.les_tags_biens_name=[];
+	  this.les_tags_services_name=[];
 	  this.selected_tag=[];
 
 	  this.la_date_choisi = [];
@@ -93,7 +113,14 @@ export class ProfilUserComponent implements OnInit {
   }
 
   ajoutTagBien(){
-  	this.les_tags_biens=this.selected_tag;
+  	if(this.selected_tag!=undefined){
+	  	let un_tab = new Array;
+	  	for(let i =0; i<this.selected_tag.length;i++){
+	  		this.tags_bien.push(this.selected_tag[i].idTags);
+	  		un_tab.push(this.selected_tag[i].nom)
+	  	}
+	  	this.les_tags_biens_name=un_tab;
+  	}
   }
 
   ajoutDateBien(){
@@ -107,7 +134,7 @@ export class ProfilUserComponent implements OnInit {
 
   		let date = jour+"/"+mois+"/"+annee+":"+amOrPm;
   		this.date_biens.push(date);
-	  	this.date_biens_string+=date+" ";
+	  	this.date_biens_string+=date+"\n";
   	}
   }
 
@@ -115,8 +142,8 @@ export class ProfilUserComponent implements OnInit {
     this.service.getBiensByEmail(this.email).subscribe(res =>{
 	   this.biens = res;
         this.service.getServicesByEmail(this.email).subscribe(res =>{
-			this.les_tags_biens=[];
-			this.les_tags_services=[];
+			this.les_tags_biens_name=[];
+			this.les_tags_services_name=[];
             this.services = res;
         });
   	});
