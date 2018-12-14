@@ -7,7 +7,6 @@ import { SearchBiensService } from '../search-biens.service'
   styleUrls: ['./recherche.component.css']
 })
 export class RechercheComponent implements OnInit {
-  private type: string;
   private nom: string;
   private min: number=1;
   private max: number=1000000;
@@ -21,7 +20,7 @@ export class RechercheComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(){
-  	if(this.type != undefined && this.nom != undefined && this.min != undefined && this.max != undefined && this.jourD != undefined && this.jourF != undefined){
+  	if(this.nom != undefined && this.min != undefined && this.max != undefined && this.jourD != undefined && this.jourF != undefined){
 
       let jour = this.jourD.day;
       let mois = this.jourD.month;
@@ -31,7 +30,7 @@ export class RechercheComponent implements OnInit {
       mois = this.jourF.month;
       annee = this.jourF.year;
       let df = jour+"/"+mois+"/"+annee;
-  		this.service.getBiens(this.type,this.nom,this.min,this.max,dd,df,this.tags).subscribe(res =>{
+  		this.service.getBiens(this.nom,this.min,this.max,dd,df,this.tags).subscribe(res =>{
   			this.result = res;
         this.submitted=true;
   		});
