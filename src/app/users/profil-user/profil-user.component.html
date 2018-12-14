@@ -12,7 +12,7 @@
           <div class="form-row">
             <div class="form-group col-sm-2"></div>
             <div>
-              <label>Nom </label>
+              <label>Nom du bien</label>
                <input type="text" required placeholder="nom" class="form-control" name="nom" [(ngModel)]="nomBien"/>
             </div>
             <div class="form-group col-sm-1"></div>
@@ -85,6 +85,78 @@
     <button *ngIf="!afficherFormService" type="button" (click)="formService()" class="btn btn-primary btn-sm">Afficher</button>
     <div *ngIf="afficherFormService">
       <button type="button" (click)="formService()" class="btn btn-primary btn-sm">Cacher</button>
+
+      <!--titre descriptif experience prixService -->
+      <form method="post">
+        <div class="form-row">
+
+          <div class="form-group col-sm-1"></div>
+          <div>
+            <label>Nom du service</label>
+            <input type="text" required placeholder="nom" class="form-control" name="nom" [(ngModel)]="titreService"/>
+          </div>
+          <div class="form-group col-sm-1"></div>
+          <div class="form-group col-sm-3">
+            <label>Prix</label>
+            <input type="number" required placeholder="prix" class="form-control" name="prixService" [(ngModel)]="prixService"/>
+          </div>
+
+          <div style="margin-left: 5%">
+            <label>Descriptif </label>
+            <textarea required class="form-control" cols="25" name="descriptif" [(ngModel)]="descService" placeholder="Description"></textarea>
+          </div>
+          <div class="form-group col-sm-1"></div>
+          <div>
+            <label>Expérience </label>
+            <textarea  required cols="25" class="form-control" name="experience" [(ngModel)]="experience" placeholder="Expérience"></textarea>
+          </div> 
+          <br /><br /><br /><br /><br />
+            <div class="form-group col-sm-6">
+              <br /> <br />
+              <select class="selectpicker" style="width:80%;" multiple  [(ngModel)]="selected_tag_autre" name="selected" >
+                <option *ngFor="let tagg of les_tags_autre" [value]="tagg">{{tagg.nom}}</option>
+              </select>
+              <br />
+              <button  (click)="ajoutTagService()" class="btn btn-info btn-sm col-sm-4">Ajouter tags</button>
+            </div> 
+
+            <div class="form-group col-sm-3">
+              <label>Tags sélectionnés</label>
+              <textarea cols="25" rows="6" type="text" [value]="les_tags_services_name" readonly="true"></textarea>
+            </div>
+
+            <div class="form-group col-sm-6">
+               <br /><br />
+               <input type="text" placeholder="dd/mm/aaaa" [(ngModel)]="la_date_choisi_autre" name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"/>
+               <br /><br />
+              <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="amService">
+                <label ngbButtonLabel class="btn-primary" >
+                  <input  ngbButton type="radio" [value]="true" > Matin
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                  <input  ngbButton type="radio" [value]="false"> Après-midi
+                </label>
+              </div>
+              <br /><br />
+              <div *ngIf="amBien==true">
+                <p>Vous avez choisi le matin<p>
+              </div>
+              <div *ngIf="amBien==false">
+                <p>Vous avez choisi l'après-midi<p>
+              </div>
+
+              <br />
+            </div>
+
+            <div class="form-group col-sm-2">
+               <label>Date choisie</label>
+               <textarea cols="25" rows="3" type="text" name="ld" [value]="date_services_string" readonly="true"></textarea>
+               <button  (click)="ajoutDateService()" class="btn btn-info btn-sm ">Ajouter Date</button>
+            </div>
+        </div>
+        <button  (click)="addService()" class="btn btn-primary btn-sm col-sm-4">Ajouter le service !</button>
+      </form>
+
       <br />
      </div>
   </div>
