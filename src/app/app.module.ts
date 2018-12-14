@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { UsersModule } from './users/users.module';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes,RouterModule } from '@angular/router';
-
+import * as $ from 'jquery';
 import { ListUsersComponent } from './users/list-users/list-users.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
 import { LoginUserComponent } from './users/login-user/login-user.component';

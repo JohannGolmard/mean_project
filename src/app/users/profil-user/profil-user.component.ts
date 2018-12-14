@@ -27,13 +27,19 @@ export class ProfilUserComponent implements OnInit {
   private services : Object[] = [];
 
   private les_tags : Object[];
-  private les_tags_biens : Object[];
+  private les_tags_biens : Object[] =[];
   private les_tags_services : Object[];
   private selected_tag : Object[];
 
+  private la_date_choisi : Object[];
+  private date_biens : Object[] =[];
+
   constructor(private service: UsersService,private router: Router) { }
 
-  addBien(){}
+  addBien(){
+
+  this.reset();
+  }
 
   formBien(){
   	if(this.afficherFormBien==false)
@@ -69,9 +75,26 @@ export class ProfilUserComponent implements OnInit {
   		});
   }
 
+  reset(){
+	  this.nomBien="";
+	  this.descriptif="";
+	  this.prix=1;
+	  this.tags=[];
+	  this.les_tags_biens=[];
+	  this.les_tags_services=[];
+	  this.selected_tag=[];
+
+	  this.la_date_choisi = [];
+	  this.date_biens=[];
+  }
+
   ajoutTagBien(){
   	this.les_tags_biens=this.selected_tag;
   	console.log(this.les_tags_biens);
+  }
+
+  ajoutDateBien(){
+
   }
 
   update(){
