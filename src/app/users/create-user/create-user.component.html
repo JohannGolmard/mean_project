@@ -2,6 +2,11 @@
 <h1>Formulaire d'inscription</h1>
 <br />
     <div class="container">
+        <div *ngIf="!notAdded">
+          <ngb-alert [dismissible]="false" type="danger">
+              <strong>Cet email est déjà utilisé !</strong>
+          </ngb-alert>
+        </div>
         <form class="form" method="post" *ngIf="!submitted" (ngSubmit)="onSubmit()">
           <div class="form-group col-4" style="margin: 0 auto;">
             <label>Login (email) </label>
@@ -38,16 +43,15 @@
              <input type="text" required placeholder="votre code postal" class="form-control" name="cp" [(ngModel)]="cp"/>
           </div><br />
          
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success">Envoyer</button>
      
         </form>
-        <div *ngIf="!notAdded">
-          <label>Cet email/login est déjà utilisé </label>
-        </div>
 
         <div *ngIf="submitted">
           <br/>
-          Inscription réussie !
+          <ngb-alert [dismissible]="false" type="success">
+              <strong>Inscription réussie !</strong>
+          </ngb-alert>
           <br/>
           <br/>
         </div>
