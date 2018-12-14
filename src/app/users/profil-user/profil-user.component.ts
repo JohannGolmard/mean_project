@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class ProfilUserComponent implements OnInit {
 
   private afficherFormBien : boolean =false; // false pour cacher true pour afficher
-  private afficherFormService : boolean =true;
+  private afficherFormService : boolean =false;
 
   //formulaire bien
   private nomBien : string;
@@ -35,17 +35,18 @@ export class ProfilUserComponent implements OnInit {
   private role : string;
   private services : Object[] = [];
 
-  private les_tags : Object[];
-  private les_tags_autre : Object[];
+  private les_tags : Object[]; //formulaire bien
+  private les_tags_autre : Object[]; //formulaire service
 
   private les_tags_biens_name : Object[] =[];
   private les_tags_services_name : Object[];
-  private selected_tag;
-  private selected_tag_autre;
+  private selected_tag; //formulaire bien
+  private selected_tag_autre; //formulaire service
 
-  private la_date_choisi;
-  private la_date_choisi_autre;
-  private date_biens : Object[] =[];
+  private la_date_choisi; //formulaire bien
+  private la_date_choisi_autre; //formulaire service
+
+  private date_biens : Object[] =[]; 
   private date_biens_string :string ="";
 
   private date_services : Object[] =[];

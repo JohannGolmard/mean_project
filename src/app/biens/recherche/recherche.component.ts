@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchBiensService } from '../search-biens.service'
+import { UsersService } from '../../users/users.service'
 
 @Component({
   selector: 'app-recherche',
@@ -15,10 +16,31 @@ export class RechercheComponent implements OnInit {
   private tags : string = "";
   private result : Object [];
   private submitted : boolean = false;
-  constructor(private service: SearchBiensService) { }
+
+  private les_tags;
+  private selected_tag;
+  constructor(private service: SearchBiensService, private service_tag : UsersService) { }
 
   ngOnInit() {
+    this.les_tags=[];
+    this.les_tags.push(" ");
+    this.service_tag.getTag().subscribe(res => {
+      this.les_tags=res;
+    });
   }
+
+  ajoutTag(){
+    this.tags="";
+    if(this.selected_tag!=undefined){
+      for(let i =0; i<this.selected_tag.length;i++){
+        if(i==this.selected_tag.length-1)
+          this.tags+=this.selected_tag[i].nom;
+        else
+          this.tags+=this.selected_tag[i].nom+";";
+      }
+    }
+  }
+
   onSubmit(){
   	if(this.nom != undefined && this.min != undefined && this.max != undefined && this.jourD != undefined && this.jourF != undefined){
 
