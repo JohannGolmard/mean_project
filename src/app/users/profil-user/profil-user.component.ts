@@ -17,7 +17,7 @@ export class ProfilUserComponent implements OnInit {
   private descriptif : string;
   private prix: number =1;
   private tags: Array<number>;
-  private amBien: string ="true";
+  private amBien: boolean =true;
 
   //info utilisateur
   private nom: string;
@@ -34,6 +34,7 @@ export class ProfilUserComponent implements OnInit {
 
   private la_date_choisi;
   private date_biens : Object[] =[];
+  private date_biens_string :string ="";
 
   constructor(private service: UsersService,private router: Router) { }
 
@@ -76,10 +77,11 @@ export class ProfilUserComponent implements OnInit {
   }
 
   reset(){
+  	  this.date_biens_string = "";
 	  this.nomBien="";
 	  this.descriptif="";
 	  this.prix=1;
-	  this.amBien="true";
+	  this.amBien=true;
 	  this.tags=[];
 	  this.les_tags_biens=[];
 	  this.les_tags_services=[];
@@ -96,12 +98,16 @@ export class ProfilUserComponent implements OnInit {
 
   ajoutDateBien(){
   	if(this.la_date_choisi!=undefined){
-
+  		let amOrPm = "am";
   		let jour = this.la_date_choisi.day;
   		let mois = this.la_date_choisi.month;
   		let annee = this.la_date_choisi.year;
-  		let date = jour+"/"+mois+"/"+annee;
-	  	this.date_biens.push(date);	
+  		if(this.amBien==false)
+  			amOrPm="pm";
+
+  		let date = jour+"/"+mois+"/"+annee+":"+amOrPm;
+  		this.date_biens.push(date);
+	  	this.date_biens_string+=date+" ";
   	}
   }
 
