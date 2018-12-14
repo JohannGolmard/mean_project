@@ -31,9 +31,9 @@
             <div class="form-group col-sm-3"></div>
             <br /><br /><br /><br /><br />
 
-            <div class="form-group form-group col-sm-6">
+            <div class="form-group col-sm-6">
               <br /> <br />
-              <select class="selectpicker" style="width:80%;" multiple  [(ngModel)]="selected_tag" [value]="tag" name="selected" >
+              <select class="selectpicker" style="width:80%;" multiple  [(ngModel)]="selected_tag" name="selected" >
                 <option *ngFor="let tag of les_tags" [value]="tag.nom">{{tag.nom}}</option>
               </select>
               <br />
@@ -47,24 +47,31 @@
 
             <div class="form-group col-sm-6">
                <br /><br />
-               <p><input type="text" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"/></p>
+               <input type="text" placeholder="dd/mm/aaaa" [(ngModel)]="la_date_choisi" name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"/>
+               <br /><br />
+              <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="amBien">
+                <label ngbButtonLabel >
+                  <input  ngbButton type="radio" [value]="true" checked> Matin
+                </label>
+                <label ngbButtonLabel >
+                  <input  ngbButton type="radio" [value]="false"> Aprèm-midi
+                </label>
+              </div>
+              <br /><br />
+              <div *ngIf="amBien==true">
+                <p>Vous avez choisi le matin<p>
+              </div>
+              <div *ngIf="amBien==false">
+                <p>Vous avez choisi l'aprèm-midi<p>
+              </div>
+
+              <br />
                <button  (click)="ajoutDateBien()" class="btn btn-info btn-sm ">Ajouter Date</button>
-
-            
-              <div class="radio">
-                <label><input type="radio" name="optradio" checked>Matin</label>
-              </div>
-              <div class="radio">
-                <label><input type="radio" name="optradio">Après-midi</label>
-              </div>
             </div>
-
-
              <div class="form-group col-sm-2">
                <label>Date choisie</label>
                <textarea cols="25" rows="3" type="text" [value]="date_biens" readonly="true"></textarea>
             </div>
-
           </div>
 
           <button  (click)="addBien()" class="btn btn-primary btn-sm col-sm-4">Ajouter le bien !</button>

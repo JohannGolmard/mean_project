@@ -17,6 +17,7 @@ export class ProfilUserComponent implements OnInit {
   private descriptif : string;
   private prix: number =1;
   private tags: Array<number>;
+  private amBien: string ="true";
 
   //info utilisateur
   private nom: string;
@@ -31,7 +32,7 @@ export class ProfilUserComponent implements OnInit {
   private les_tags_services : Object[];
   private selected_tag : Object[];
 
-  private la_date_choisi : Object[];
+  private la_date_choisi;
   private date_biens : Object[] =[];
 
   constructor(private service: UsersService,private router: Router) { }
@@ -69,7 +70,6 @@ export class ProfilUserComponent implements OnInit {
 	           this.services = res;
 	           this.service.getTag().subscribe(res => {
 	           		this.les_tags=res;
-	           		console.log(res);
 	           });
 	        });
   		});
@@ -79,6 +79,7 @@ export class ProfilUserComponent implements OnInit {
 	  this.nomBien="";
 	  this.descriptif="";
 	  this.prix=1;
+	  this.amBien="true";
 	  this.tags=[];
 	  this.les_tags_biens=[];
 	  this.les_tags_services=[];
@@ -86,15 +87,22 @@ export class ProfilUserComponent implements OnInit {
 
 	  this.la_date_choisi = [];
 	  this.date_biens=[];
+
   }
 
   ajoutTagBien(){
   	this.les_tags_biens=this.selected_tag;
-  	console.log(this.les_tags_biens);
   }
 
   ajoutDateBien(){
+  	if(this.la_date_choisi!=undefined){
 
+  		let jour = this.la_date_choisi.day;
+  		let mois = this.la_date_choisi.month;
+  		let annee = this.la_date_choisi.year;
+  		let date = jour+"/"+mois+"/"+annee;
+	  	this.date_biens.push(date);	
+  	}
   }
 
   update(){
