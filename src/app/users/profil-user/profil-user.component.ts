@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../users.service'
+import { UsersService } from '../users.service';
+import { SearchBiensService } from '../../biens/search-biens.service';
+import { SearchServService } from '../../services/search-serv.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./profil-user.component.css']
 })
 export class ProfilUserComponent implements OnInit {
-
+  
+  //boutons pour cacher 
   private afficherFormBien : boolean =false; // false pour cacher true pour afficher
   private afficherFormService : boolean =false;
 
@@ -55,7 +58,8 @@ export class ProfilUserComponent implements OnInit {
   private date_services : Object[] =[];
   private date_services_string :string ="";
 
-  constructor(private service: UsersService,private router: Router) { }
+  private emprunt : Object[] = [];
+  constructor(private service: UsersService,private serviceNaviBien: SearchBiensService,private serviceNaviService: SearchServService ,private router: Router) { }
 
   addBien(){
   	if(this.nomBien!="" && this.descriptif!="" && this.date_biens.length!=0){
@@ -147,6 +151,10 @@ export class ProfilUserComponent implements OnInit {
 	           this.service.getTag().subscribe(res => {
 	           		this.les_tags=res;
 	           		this.les_tags_autre=res;
+                this.service.getEmprunt(this.email).subscribe(res => {
+                  console.log(res);
+                  this.emprunt = res;
+                });
 	           });
 	        });
   		});
@@ -274,6 +282,16 @@ export class ProfilUserComponent implements OnInit {
     this.service.deleteService(id).subscribe(res =>{
     	this.update();
     });
+  }
+
+  navigateToBien(res:any){
+    this.serviceNaviBien.bien = res;
+    this.router.navigate(['bien']);
+  }
+
+  navigateToService(res:any){
+    this.serviceNaviService.serv = res;
+    this.router.navigate(['service']);
   }
 
 }
