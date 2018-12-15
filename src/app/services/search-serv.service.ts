@@ -25,4 +25,8 @@ export class SearchServService {
   	let observable: Observable<any> = this.http.get(url);
   	return observable;
   }
+  doEmprunt(data:any): Observable<any>{
+    let url = "http://localhost:8888/emprunt";
+    return this.http.post(url,data);
+  }
 }
