@@ -30,6 +30,11 @@ export class UsersService {
     return this.http.post(url,data);
   }
 
+  addService(data): Observable<any>{
+    let url = "http://localhost:8888/addServices";
+    return this.http.post(url,data);
+  }
+
   addDispo(data): Observable<any>{
     let url = "http://localhost:8888/dateBiens";
     return this.http.post(url,data);

@@ -12,6 +12,9 @@ export class ProfilUserComponent implements OnInit {
   private afficherFormBien : boolean =false; // false pour cacher true pour afficher
   private afficherFormService : boolean =false;
 
+  private afficherTabBien : boolean = true;
+  private afficherTabService : boolean = true;
+
   //formulaire bien
   private nomBien : string;
   private descriptif : string;
@@ -78,7 +81,25 @@ export class ProfilUserComponent implements OnInit {
   }
 
   addService(){
-    	this.resetService();
+    if(this.titreService!="" && this.descService!="" && this.experience!="" && this.date_services.length!=0){
+      let leService = {"idProprio":this.email,"titre":this.titreService,"descriptif":this.descService,"experience":this.experience,"prixService":this.prixService};
+      this.service.addService(leService).subscribe(res =>{
+        let idService = res;
+        let data;
+        let date;
+        let pmAm;
+        let dateCourante : string;
+        for(let i = 0 ; i<this.date_biens.length;i++){
+          dateCourante=this.date_biens[i].toString();
+          date = dateCourante.slice(0, 10);
+          pmAm=dateCourante.slice(11, 13);
+          data={"idService":idService.toString(),"date":date,"AMPM":pmAm}; 
+          this.service.addDispo(data).subscribe(res =>{});
+        }
+        this.update();
+        this.resetService();
+      });   
+    }
   }
 
   formBien(){
@@ -93,6 +114,20 @@ export class ProfilUserComponent implements OnInit {
   		this.afficherFormService=true;
   	else
   		this.afficherFormService=false;
+  }
+
+  tabBien(){
+    if(this.afficherTabBien==false)
+      this.afficherTabBien=true;
+    else
+      this.afficherTabBien=false;
+  }
+
+  tabService(){
+    if(this.afficherTabService==false)
+      this.afficherTabService=true;
+    else
+      this.afficherTabService=false;  
   }
 
   ngOnInit() {
