@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchBiensService } from '../search-biens.service'
-import { UsersService } from '../../users/users.service'
+import { SearchBiensService } from '../search-biens.service';
+import { UsersService } from '../../users/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recherche',
@@ -19,7 +20,7 @@ export class RechercheComponent implements OnInit {
 
   private les_tags;
   private selected_tag;
-  constructor(private service: SearchBiensService, private service_tag : UsersService) { }
+  constructor(private service: SearchBiensService, private service_tag : UsersService, private router: Router) { }
 
   ngOnInit() {
     this.les_tags=[];
@@ -38,6 +39,11 @@ export class RechercheComponent implements OnInit {
   }
   removeTags(){
     this.tags="";
+  }
+
+  navigateTo(res:any){
+    this.service.bien = res;
+    this.router.navigate(['bien']);
   }
 
   onSubmit(){

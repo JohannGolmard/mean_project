@@ -9,6 +9,7 @@ import { RequestOptions } from '@angular/http';
 export class SearchBiensService {
 
   //private _options = new HttpHeaders({'Content-Type':'application/json'});
+  public bien : any;
   constructor(private http: HttpClient) { }
 
   getBiens(nom: string,min: number,max: number,jourD: string,jourF : string,tags : string): Observable<any>{

@@ -10,6 +10,8 @@ import { LoginUserComponent } from './users/login-user/login-user.component';
 import { RechercheComponent } from './biens/recherche/recherche.component';
 import { RechercheServComponent } from './services/recherche-serv/recherche-serv.component';
 import { ProfilUserComponent } from './users/profil-user/profil-user.component';
+import { PageBienComponent } from './biens/page-bien/page-bien.component';
+import { PageServComponent } from './services/page-serv/page-serv.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -48,6 +50,16 @@ const routes: Routes = [
    canActivate: [GuardUsersService]
   },
   {
+   path:'bien',
+   component: PageBienComponent,
+   canActivate: [GuardUsersService]
+  },
+  {
+   path:'service',
+   component: PageServComponent,
+   canActivate: [GuardUsersService]
+  },
+  {
    path:'resServ',
    component: RechercheServComponent,
    canActivate: [GuardUsersService]
@@ -68,6 +80,8 @@ const routes: Routes = [
     LoginUserComponent,
     MenuComponent,
     RechercheComponent,
+    PageBienComponent,
+    PageServComponent,
     RechercheServComponent,
     ProfilUserComponent,
     HomepageComponent,

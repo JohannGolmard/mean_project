@@ -8,6 +8,8 @@ import { RequestOptions } from '@angular/http';
 })
 export class SearchServService {
 
+  public serv : any;
+
   constructor(private http: HttpClient) { }
 
   getService(titre: string,min: number,max: number,jourD: string,jourF : string,tags : string): Observable<any>{
