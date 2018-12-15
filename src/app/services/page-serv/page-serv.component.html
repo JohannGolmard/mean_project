@@ -14,7 +14,7 @@
 	    <p class="card-text">Prix : {{serv.prixService}} €</p>
 	    <h5 class="card-title">Concernant {{serv.idProprio}}</h5>
 	    <p class="card-text">{{serv.experience}}</p>
-	    <a *ngIf="dispo" class="btn btn-primary">Empruntez !</a>
+	    <a *ngIf="dispo" class="btn btn-primary text-white">Empruntez !</a>
 	    <ngb-alert *ngIf="!dispo" [dismissible]="false" type="danger">
               <strong>Indisponible</strong>
         </ngb-alert>

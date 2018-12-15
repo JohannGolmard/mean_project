@@ -12,7 +12,10 @@
 	    <p *ngIf="bien.disponibilites[0].AMPM=='pm'"class="card-text">Disponible pour le {{bien.disponibilites[0].date}} dans l'après-midi.</p>
 	    <h5 class="card-title">Prix</h5>
 	    <p class="card-text">Prix : {{bien.prixNeuf}} €</p>
-	    <a href="#" class="btn btn-primary">Empruntez !</a>
+	    <a *ngIf="dispo" class="btn btn-primary text-white">Empruntez !</a>
+	    <ngb-alert *ngIf="!dispo" [dismissible]="false" type="danger">
+              <strong>Indisponible</strong>
+        </ngb-alert>
 	  </div>
 	  <div class="card-footer">
 	    	<small class="text-muted">Tags : {{tags}}</small>
