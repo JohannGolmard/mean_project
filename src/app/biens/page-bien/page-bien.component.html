@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center ">
+<div class="d-flex justify-content-center col-8">
+	<div class="card">
+	  <div class="card-header">
+	    <h3>{{bien.nom}}</h3>
+	  </div>
+	  <div class="card-body">
+	    <h5 class="card-title">Descriptif</h5>
+	    <p class="card-text">{{bien.descriptif}} de type {{bien.type}}</p>
+	    <h5 class="card-title">Disponibilités</h5>
+	    <p *ngIf="bien.disponibilites[0].AMPM=='am'" class="card-text">Disponible pour le {{bien.disponibilites[0].date}} dans la matinée.</p>
+	    <p *ngIf="bien.disponibilites[0].AMPM=='pm'"class="card-text">Disponible pour le {{bien.disponibilites[0].date}} dans l'après-midi.</p>
+	    <h5 class="card-title">Prix</h5>
+	    <p class="card-text">Prix : {{bien.prixNeuf}} €</p>
+	    <a href="#" class="btn btn-primary">Empruntez !</a>
+	  </div>
+	  <div class="card-footer">
+	    	<small class="text-muted">Tags : {{tags}}</small>
+	  </div>
+	</div>
+</div>
+</div>

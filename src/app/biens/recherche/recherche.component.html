@@ -64,13 +64,13 @@
               <th scope="col">Nom</th>
               <th scope="col">Descriptif</th>
               <th scope="col">Prix</th>
-              <th scope="col">Photo</th>
+              <th scope="col">Page</th>
             </tr>
             <tr *ngFor="let res of result">
               <td>{{res.nom}}</td>
               <td>{{res.descriptif}}</td>
               <td>{{res.prixNeuf}}</td>
-              <td>{{res.lienPhoto}}</td>
+              <td><button class="btn btn-secondary btn-sm col-sm-4" (click)="navigateTo(res)">Liens</button></td>
             </tr>
           </table>
         </div>
