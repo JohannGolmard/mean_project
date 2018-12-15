@@ -1,9 +1,9 @@
 
     <div class="container">
-        <form  method="post" (ngSubmit)="onSearch()">
+        <form  method="post">
           <div class="form-row">
-            <div class="form-group col-sm-3"></div>
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-4"></div>
+            <div class="form-group col-sm-4">
               <label>Titre</label>
       			   <input type="text" required placeholder="titre" class="form-control" name="type" [(ngModel)]="titre"/>
             </div>
@@ -22,24 +22,31 @@
 
             <div class="form-group col-sm-2">
               <label>Date début</label>
-      			   <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourD" name="ddp" ngbDatepicker #dd="ngbDatepicker" (click)="dd.toggle()"/>
+      			   <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourD" name="ddp" ngbDatepicker #dd="ngbDatepicker" (click)="dd.toggle()" placement="bottom" ngbTooltip="Date : {{jourD.day}}/{{jourD.month}}/{{jourD.year}}"/>
             </div>
-
             <div class="form-group col-sm-2">
               <label>Date fin</label>
-      			   <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourF" name="dfp" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()"/>
+      			   <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourF" name="dfp" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()" placement="bottom" ngbTooltip="Date : {{jourF.day}}/{{jourF.month}}/{{jourF.year}}"/>
             </div>
           </div>
-          <div class="form-group d-flex flex-column justify-content-center">
+          <div>
             <label>Tags</label>
-    			  <textarea required class="form-control mx-auto col-5" name="tags" [(ngModel)]="tags" placeholder="Utilisez ; pour séparer les tags"></textarea>
+            <div>
+            <select class="selectpicker" style="width:50%;" multiple  [(ngModel)]="selected_tag" name="selected" >
+              <option *ngFor="let tag of les_tags" [value]="tag">{{tag.nom}}</option>
+            </select>
+          </div>
+          <button  (click)="ajoutTag()" class="btn btn-info btn-sm mr-5">Ajouter tags</button>
+          <button  (click)="removeTags()" class="btn btn-info btn-sm">Enlever tags</button>
+          <br /><br />
+    			  <textarea required readonly="true" rows="2" class="form-control" name="tags" [(ngModel)]="tags" placeholder="Tags pour la recherche"></textarea>
           </div>
           <br>
           <div *ngIf="!submitted" class="form-group d-flex justify-content-center">
-            <button type="submit" class="btn btn-success">Envoyer</button>
+            <button type="submit" class="btn btn-success" (click)="onSearch()">Envoyer</button>
           </div>
           <div *ngIf="submitted" class="form-group d-flex justify-content-center">
-            <button type="submit" class="btn btn-success">Nouvelle recherche</button>
+            <button type="submit" class="btn btn-success" (click)="onSearch()">Nouvelle recherche</button>
           </div>
         </form>
         <br>

@@ -30,15 +30,14 @@ export class RechercheComponent implements OnInit {
   }
 
   ajoutTag(){
-    this.tags="";
     if(this.selected_tag!=undefined){
       for(let i =0; i<this.selected_tag.length;i++){
-        if(i==this.selected_tag.length-1)
-          this.tags+=this.selected_tag[i].nom;
-        else
           this.tags+=this.selected_tag[i].nom+";";
       }
     }
+  }
+  removeTags(){
+    this.tags="";
   }
 
   onSubmit(){
@@ -52,7 +51,8 @@ export class RechercheComponent implements OnInit {
       mois = this.jourF.month;
       annee = this.jourF.year;
       let df = jour+"/"+mois+"/"+annee;
-  		this.service.getBiens(this.nom,this.min,this.max,dd,df,this.tags).subscribe(res =>{
+      let tag =this.tags.substring(0, this.tags.length-1); // remove le dernier ;
+  		this.service.getBiens(this.nom,this.min,this.max,dd,df,tag).subscribe(res =>{
   			this.result = res;
         this.submitted=true;
   		});

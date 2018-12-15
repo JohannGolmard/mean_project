@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchServService } from '../search-serv.service'
+import { SearchServService } from '../search-serv.service';
+import { UsersService } from '../../users/users.service';
 
 @Component({
   selector: 'app-recherche-serv',
@@ -16,11 +17,30 @@ export class RechercheServComponent implements OnInit {
   private result : Object [];
   private submitted : boolean = false;
 
-  constructor(private service: SearchServService) { }
+  private les_tags;
+  private selected_tag;
+
+  constructor(private service: SearchServService, private service_tag : UsersService) { }
 
   ngOnInit() {
-
+    this.les_tags=[];
+    this.les_tags.push(" ");
+    this.service_tag.getTag().subscribe(res => {
+      this.les_tags=res;
+    });
   }
+
+  ajoutTag(){
+    if(this.selected_tag!=undefined){
+      for(let i =0; i<this.selected_tag.length;i++){
+          this.tags+=this.selected_tag[i].nom+";";
+      }
+    }
+  }
+  removeTags(){
+    this.tags="";
+  }
+
   onSearch(){
   	if(this.titre != undefined && this.min != undefined && this.max != undefined && this.jourD != undefined && this.jourF != undefined){
       let jour = this.jourD.day;
@@ -32,9 +52,11 @@ export class RechercheServComponent implements OnInit {
       mois = this.jourF.month;
       annee = this.jourF.year;
       let df = jour+"/"+mois+"/"+annee;
+      let tag =this.tags.substring(0, this.tags.length-1); // remove le dernier ;
 
-  		this.service.getService(this.titre,this.min,this.max,dd,df,this.tags).subscribe(res =>{
+  		this.service.getService(this.titre,this.min,this.max,dd,df,tag).subscribe(res =>{
   			this.result = res;
+        console.log(res);
             this.submitted=true;
   		});
 

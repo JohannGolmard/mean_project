@@ -1,6 +1,6 @@
 
     <div class="container">
-        <form  method="post" (ngSubmit)="onSubmit()">
+        <form  method="post">
           <div class="form-row">
             <div class="form-group col-sm-4"></div>
 
@@ -23,12 +23,12 @@
 
             <div class="form-group col-sm-2">
               <label>Date début</label>
-              <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourD" name="ddp" ngbDatepicker #dd="ngbDatepicker" (click)="dd.toggle()"/>
+              <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourD" name="ddp" ngbDatepicker #dd="ngbDatepicker" (click)="dd.toggle()" placement="bottom" ngbTooltip="Date : {{jourD.day}}/{{jourD.month}}/{{jourD.year}}"/>
             </div>
 
             <div class="form-group col-sm-2">
               <label>Date fin</label>
-      			   <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourF" name="dfp" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()"/>
+      			   <input type="text" class="form-control required" placeholder="dd/mm/aaaa" [(ngModel)]="jourF" name="dfp" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()" placement="bottom" ngbTooltip="Date : {{jourF.day}}/{{jourF.month}}/{{jourF.year}}"/>
             </div>
           </div>
 
@@ -39,17 +39,18 @@
               <option *ngFor="let tag of les_tags" [value]="tag">{{tag.nom}}</option>
             </select>
           </div>
-          <button  (click)="ajoutTag()" class="btn btn-info btn-sm">Ajouter tags</button>
+          <button  (click)="ajoutTag()" class="btn btn-info btn-sm mr-5">Ajouter tags</button>
+          <button  (click)="removeTags()" class="btn btn-info btn-sm">Enlever tags</button>
           <br /><br />
           <div>
     			  <textarea required readonly="true" rows="2" class="form-control" name="tags" [(ngModel)]="tags" placeholder="Tags pour la recherche"></textarea>
           </div>
           <br>
           <div *ngIf="!submitted" class="form-group col-5">
-            <button type="submit" class="btn btn-success">Envoyer</button>
+            <button type="submit" class="btn btn-success" (click)="onSubmit()">Envoyer</button>
           </div>
           <div *ngIf="submitted" class="form-group col-5">
-            <button type="submit" class="btn btn-success">Nouvelle recherche</button>
+            <button type="submit" class="btn btn-success" (click)="onSubmit()">Nouvelle recherche</button>
           </div>
         </form>
         <br>

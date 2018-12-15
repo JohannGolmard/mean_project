@@ -15,7 +15,6 @@ export class AdminPageComponent implements OnInit {
   	this.service.getDesequilibre().subscribe(rez =>{
   		this.users.getUsers().subscribe(res =>{
   			this.listUsers = res;
-  			console.log(this.listUsers);
   		});
 
   	});
