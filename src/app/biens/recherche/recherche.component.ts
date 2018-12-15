@@ -59,6 +59,7 @@ export class RechercheComponent implements OnInit {
       let df = jour+"/"+mois+"/"+annee;
       let tag =this.tags.substring(0, this.tags.length-1); // remove le dernier ;
   		this.service.getBiens(this.nom,this.min,this.max,dd,df,tag).subscribe(res =>{
+      console.log(res);
   			this.result = res;
         this.submitted=true;
   		});

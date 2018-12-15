@@ -19,7 +19,7 @@ export class UsersService {
   addUser(mail:string, nom:string, prenom:string, mdp:string, ville:string, adresse:string, cp:string): Observable<any> {
   		let url= "http://localhost:8888/addUsers"
   		let data = {"email":mail,"nom":nom,"prenom":prenom, "mdp":mdp,"ville":ville,
-    "adresse":adresse,"cp":cp,"rapport":"50","aNotifier":false};
+    "adresse":adresse,"cp":cp,"rapport":50.000,"aNotifier":false};
   		//let options = new RequestOptions({headers:this._options});
 
   		return this.http.post(url,data);
