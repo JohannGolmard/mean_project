@@ -37,7 +37,8 @@
                 <option *ngFor="let tag of les_tags" [value]="tag">{{tag.nom}}</option>
               </select>
               <br />
-              <button  (click)="ajoutTagBien()" class="btn btn-info btn-sm col-sm-4">Ajouter tags</button>
+              <button  (click)="ajoutTagBien()" class="btn btn-info btn-sm">Ajouter tags</button>&nbsp;
+              <button  (click)="removeTagsBien()" class="btn btn-info btn-sm">Enlever tags</button>
             </div> 
             <div class="form-group col-sm-3">
               <label>Tags sélectionnés</label>
@@ -67,10 +68,11 @@
 
               <br />
             </div>
-             <div class="form-group col-sm-2">
+             <div class="form-group col-sm-4">
                <label>Date choisie</label>
                <textarea cols="25" rows="3" type="text" name="ld" [value]="date_biens_string" readonly="true"></textarea>
-               <button  (click)="ajoutDateBien()" class="btn btn-info btn-sm ">Ajouter Date</button>
+              &nbsp;<button  (click)="ajoutDateBien()" class="btn btn-info btn-sm ">Ajouter Date</button>&nbsp;
+               <button  (click)="removeDateBien()" class="btn btn-info btn-sm">Enlever Date</button>
             </div>
           </div>
 
@@ -117,7 +119,8 @@
                 <option *ngFor="let tagg of les_tags_autre" [value]="tagg">{{tagg.nom}}</option>
               </select>
               <br />
-              <button  (click)="ajoutTagService()" class="btn btn-info btn-sm col-sm-4">Ajouter tags</button>
+              <button  (click)="ajoutTagService()" class="btn btn-info btn-sm col-sm-4">Ajouter tags</button>&nbsp;
+              <button  (click)="removeTagsService()" class="btn btn-info btn-sm">Enlever tags</button>
             </div> 
 
             <div class="form-group col-sm-3">
@@ -148,10 +151,11 @@
               <br />
             </div>
 
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-4">
                <label>Date choisie</label>
                <textarea cols="25" rows="3" type="text" name="ld" [value]="date_services_string" readonly="true"></textarea>
-               <button  (click)="ajoutDateService()" class="btn btn-info btn-sm ">Ajouter Date</button>
+               <button  (click)="ajoutDateService()" class="btn btn-info btn-sm ">Ajouter Date</button>&nbsp;
+               <button  (click)="removeDateService()" class="btn btn-info btn-sm">Enlever Date</button>
             </div>
         </div>
         <button  (click)="addService()" class="btn btn-primary btn-sm col-sm-4">Ajouter le service !</button>

@@ -38,8 +38,8 @@ export class ProfilUserComponent implements OnInit {
   private les_tags : Object[]; //formulaire bien
   private les_tags_autre : Object[]; //formulaire service
 
-  private les_tags_biens_name : Object[] =[];
-  private les_tags_services_name : Object[];
+  private les_tags_biens_name : string ="";
+  private les_tags_services_name : string="";
   private selected_tag; //formulaire bien
   private selected_tag_autre; //formulaire service
 
@@ -98,8 +98,8 @@ export class ProfilUserComponent implements OnInit {
   ngOnInit() {
 	  	this.nomBien="";
 		this.descriptif="";
-		this.les_tags_biens_name=[];
-		this.les_tags_services_name=[];
+		this.les_tags_biens_name="";
+		this.les_tags_services_name="";
 		let item = JSON.parse(localStorage.getItem('user'));
         this.nom = item[0].nom;
         this.prenom = item[0].prenom;
@@ -124,7 +124,7 @@ export class ProfilUserComponent implements OnInit {
 	  this.prix=1;
 	  this.amBien=true;
 	  this.tags_bien=[];
-	  this.les_tags_biens_name=[];
+	  this.les_tags_biens_name="";
 	  this.selected_tag=[];
 
 	  this.la_date_choisi = [];
@@ -143,7 +143,7 @@ export class ProfilUserComponent implements OnInit {
 		this.prixService=1;
 		this.tags_service=[];
 		this.amService=true;
-		this.les_tags_services_name=[];
+		this.les_tags_services_name="";
 
 		this.selected_tag_autre=[];
 
@@ -151,13 +151,16 @@ export class ProfilUserComponent implements OnInit {
 
   ajoutTagBien(){
   	if(this.selected_tag!=undefined){
-	  	let un_tab = new Array;
 	  	for(let i =0; i<this.selected_tag.length;i++){
 	  		this.tags_bien.push(this.selected_tag[i].idTags);
-	  		un_tab.push(this.selected_tag[i].nom)
-	  	}
-	  	this.les_tags_biens_name=un_tab;
+	  	  this.les_tags_biens_name+=this.selected_tag[i].nom+"\n";
+      }
   	}
+  }
+
+  removeTagsBien(){
+    this.les_tags_biens_name="";
+    this.tags_bien=[];
   }
 
   ajoutDateBien(){
@@ -175,16 +178,24 @@ export class ProfilUserComponent implements OnInit {
   	}
   }
 
+  removeDateBien(){
+    this.date_biens_string="";
+    this.date_biens=[];
+  }
+
   ajoutTagService(){
     if(this.selected_tag_autre!=undefined){
-	  	let un_tab = new Array;
 	  	for(let i =0; i<this.selected_tag_autre.length;i++){
-	  		this.tags_bien.push(this.selected_tag_autre[i].idTags);
-	  		un_tab.push(this.selected_tag_autre[i].nom)
-	  	}
-	  	this.les_tags_services_name=un_tab;
+	  		this.tags_service.push(this.selected_tag_autre[i].idTags);
+	  	  this.les_tags_services_name+=this.selected_tag_autre[i].nom+"\n";
+      }
   	}
 
+  }
+
+  removeTagsService(){
+    this.les_tags_services_name="";
+    this.tags_service=[];
   }
 
   ajoutDateService(){
@@ -202,12 +213,17 @@ export class ProfilUserComponent implements OnInit {
 	  	}
   }
 
+  removeDateService(){
+    this.date_services_string="";
+    this.date_services=[];
+  }
+
   update(){
     this.service.getBiensByEmail(this.email).subscribe(res =>{
 	   this.biens = res;
         this.service.getServicesByEmail(this.email).subscribe(res =>{
-			this.les_tags_biens_name=[];
-			this.les_tags_services_name=[];
+      			this.les_tags_biens_name="";
+      			this.les_tags_services_name="";
             this.services = res;
         });
   	});
