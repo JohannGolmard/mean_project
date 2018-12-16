@@ -58,6 +58,18 @@ export class UsersService {
       return this.http.post(url,{});
   }
 
+  getBiensById(id:string): Observable<any>{
+      let data = {"idBien":id};
+      let url = "http://localhost:8888/biens";
+      return this.http.post(url,data);
+  }
+
+  getServicesById(id:string): Observable<any>{
+      let data = {"idService":id};
+      let url = "http://localhost:8888/services";
+      return this.http.post(url,data);
+  }
+
 
   getBiensByEmail(email:string): Observable<any>{
       let data = {"idProprio":email};

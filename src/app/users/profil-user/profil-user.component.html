@@ -250,8 +250,8 @@
         <td>{{emp.date}}</td>
         <td *ngIf='emp.AMPM=="pm"'>Après-midi</td>
         <td *ngIf='emp.AMPM!="pm"'>Matin</td>
-        <td *ngIf="emp.idService==undefined"><button class="btn btn-secondary btn-sm" (click)="navigateToService(emp.service[0])">Liens</button></td>
-        <td *ngIf="emp.idService!=undefined"><button class="btn btn-secondary btn-sm" (click)="navigateToBien(emp.bien[0])">Liens</button></td>
+        <td *ngIf="emp.idService!=undefined"><button class="btn btn-secondary btn-sm" (click)='navigateTo("service",emp.service[0].idDesService[0])'>Liens</button></td>
+        <td *ngIf="emp.idService==undefined"><button class="btn btn-secondary btn-sm" (click)='navigateTo("bien",emp.bien[0].idBien[0])'>Liens</button></td>
       </tr>
     </tbody>
   </table>

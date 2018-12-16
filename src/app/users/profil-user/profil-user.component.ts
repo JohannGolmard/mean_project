@@ -152,7 +152,6 @@ export class ProfilUserComponent implements OnInit {
 	           		this.les_tags=res;
 	           		this.les_tags_autre=res;
                 this.service.getEmprunt(this.email).subscribe(res => {
-                  console.log(res);
                   this.emprunt = res;
                 });
 	           });
@@ -292,6 +291,21 @@ export class ProfilUserComponent implements OnInit {
   navigateToService(res:any){
     this.serviceNaviService.serv = res;
     this.router.navigate(['service']);
+  }
+
+  navigateTo(type:string,id:string){
+    if(type=="service"){
+      this.service.getServicesById(id).subscribe(res => {
+        this.serviceNaviService.serv = res[0];
+        this.router.navigate(['service']);
+      })
+    }
+    else{
+      this.service.getBiensById(id).subscribe(res => {
+        this.serviceNaviBien.bien = res[0];
+        this.router.navigate(['bien']);
+      })
+    }
   }
 
 }
