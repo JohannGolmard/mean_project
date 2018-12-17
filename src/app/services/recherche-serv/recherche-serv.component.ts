@@ -17,6 +17,7 @@ export class RechercheServComponent implements OnInit {
   private tags : string = "";
   private result : Object [];
   private submitted : boolean = false;
+  private canBorrow : boolean = true;
 
   private les_tags;
   private selected_tag;
@@ -28,6 +29,9 @@ export class RechercheServComponent implements OnInit {
     this.les_tags.push(" ");
     this.service_tag.getTag().subscribe(res => {
       this.les_tags=res;
+      if(JSON.parse(localStorage.getItem('user'))[0].aNotifier){
+        this.canBorrow = false;
+      }
     });
   }
 

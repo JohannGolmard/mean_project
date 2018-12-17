@@ -16,6 +16,8 @@ export class LoginUserComponent implements OnInit {
   constructor(private service: UsersService,private router: Router) { }
 
   ngOnInit() {
+    if(JSON.parse(localStorage.getItem('user')).length != 0)
+      this.router.navigate(['/profil']);
   }
   onSubmit(){
 

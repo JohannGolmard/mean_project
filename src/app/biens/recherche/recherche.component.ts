@@ -17,9 +17,11 @@ export class RechercheComponent implements OnInit {
   private tags : string = "";
   private result : Object [];
   private submitted : boolean = false;
+  private canBorrow : boolean = true;
 
   private les_tags;
   private selected_tag;
+  
   constructor(private service: SearchBiensService, private service_tag : UsersService, private router: Router) { }
 
   ngOnInit() {
@@ -27,6 +29,9 @@ export class RechercheComponent implements OnInit {
     this.les_tags.push(" ");
     this.service_tag.getTag().subscribe(res => {
       this.les_tags=res;
+      if(JSON.parse(localStorage.getItem('user'))[0].aNotifier){
+        this.canBorrow = false;
+      }
     });
   }
 
@@ -59,7 +64,6 @@ export class RechercheComponent implements OnInit {
       let df = jour+"/"+mois+"/"+annee;
       let tag =this.tags.substring(0, this.tags.length-1); // remove le dernier ;
   		this.service.getBiens(this.nom,this.min,this.max,dd,df,tag).subscribe(res =>{
-      console.log(res);
   			this.result = res;
         this.submitted=true;
   		});

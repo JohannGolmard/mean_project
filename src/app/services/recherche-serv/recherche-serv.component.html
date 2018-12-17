@@ -1,5 +1,5 @@
 
-    <div class="container">
+    <div *ngIf="canBorrow" class="container">
         <form  method="post">
           <div class="form-row">
             <div class="form-group col-sm-4"></div>
@@ -71,3 +71,6 @@
           </table>
         </div>
     </div>
+    <ngb-alert *ngIf="!canBorrow" [dismissible]="false" type="danger">
+              <strong>Il vous est impossible d'emprunter un service, vous avez atteint la limite imposée ! Donnez un peu du votre !</strong>
+    </ngb-alert>
