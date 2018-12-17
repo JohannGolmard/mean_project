@@ -15,6 +15,9 @@ export class PageServComponent implements OnInit {
   private indispo : boolean = false;
   private same : boolean = false;
   private done : boolean = false;
+  private date : string[] = [];
+  private AMPM : string[] = [];
+  public isCollapsed : boolean = false;
 
   constructor(private service : SearchServService, private route : Router) { }
 
@@ -36,22 +39,27 @@ export class PageServComponent implements OnInit {
 	  		this.dispo = false;
 	  		this.indispo = true;
 	  	}
-	  	if(this.serv.utilisations.length != 0){
-		  	let date = this.serv.disponibilites[0].date;
-		  	let ap = this.serv.disponibilites[0].AMPM;
-		  	let used = this.serv.utilisations[0];
-
-		  	if(used.date === date){
-		  		if(used.AMPM === ap){
-		  			this.dispo = false;
-		  			this.indispo = true;
-		  		}
-		  	}
+	  	else{ 
+	  		for(let ladate of this.serv.disponibilites){
+	  			this.date.push(ladate.date);
+	  			this.AMPM.push(ladate.AMPM);
+	  			if(this.serv.utilisations.length != 0){
+		  			for(let used of this.serv.utilisations){
+		  				if(used === ladate.date){
+		  					if(used.AMPM === ladate.AMPM){
+		  						this.dispo = false;
+			  					this.indispo = true;
+		  					}
+		  				}
+		  			}
+	  			}
+	  		}
 	  	}
   	}
   }
-  emprunt(){
-  	let data = {"email":JSON.parse(localStorage.getItem('user'))[0].email,"idService":this.serv.idService,"date":this.serv.disponibilites[0].date,"AMPM":this.serv.disponibilites[0].AMPM};
+  emprunt(date:any,AMPM:any){
+  	this.isCollapsed = !this.isCollapsed;
+  	let data = {"email":JSON.parse(localStorage.getItem('user'))[0].email,"idService":this.serv.idService,"date":date,"AMPM":AMPM};
   	this.service.doEmprunt(data).subscribe(res=>{
   		console.log(res);
   		this.done = true;

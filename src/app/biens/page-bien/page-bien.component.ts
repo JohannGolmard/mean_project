@@ -15,6 +15,9 @@ export class PageBienComponent implements OnInit {
   private indispo : boolean = false;
   private same : boolean = false;
   private done : boolean = false;
+  private date : string[] = [];
+  private AMPM : string[] = [];
+  public isCollapsed : boolean = false;
 
   constructor(private service : SearchBiensService, private route : Router) { }
 
@@ -36,22 +39,27 @@ export class PageBienComponent implements OnInit {
 	  		this.dispo = false;
 	  		this.indispo = true;
 	  	}
-	  	if(this.bien.utilisations.length != 0){
-		  	let date = this.bien.disponibilites[0].date;
-		  	let ap = this.bien.disponibilites[0].AMPM;
-		  	let used = this.bien.utilisations[0];
-
-		  	if(used.date === date){
-		  		if(used.AMPM === ap){
-		  			this.dispo = false;
-		  			this.indispo = true;
-		  		}
-		  	}
+	  	else{ 
+	  		for(let ladate of this.bien.disponibilites){
+	  			this.date.push(ladate.date);
+	  			this.AMPM.push(ladate.AMPM);
+	  			if(this.bien.utilisations.length != 0){
+		  			for(let used of this.bien.utilisations){
+		  				if(used === ladate.date){
+		  					if(used.AMPM === ladate.AMPM){
+		  						this.dispo = false;
+			  					this.indispo = true;
+		  					}
+		  				}
+		  			}
+	  			}
+	  		}
 	  	}
   	}
   }
-  emprunt(){
-  	let data = {"email":JSON.parse(localStorage.getItem('user'))[0].email,"idBien":this.bien.idBien,"date":this.bien.disponibilites[0].date,"AMPM":this.bien.disponibilites[0].AMPM};
+  emprunt(date:any,AMPM:any){
+  	this.isCollapsed = !this.isCollapsed;
+  	let data = {"email":JSON.parse(localStorage.getItem('user'))[0].email,"idBien":this.bien.idBien,"date":date,"AMPM":AMPM};
   	this.service.doEmprunt(data).subscribe(res=>{
   		console.log(res);
   		this.done = true;

@@ -7,12 +7,26 @@
 	  <div class="card-body">
 	    <h5 class="card-title">Descriptif</h5>
 	    <p class="card-text">{{bien.descriptif}} de type {{bien.type}}</p>
-	    <h5 class="card-title">Disponibilités</h5>
-	    <p *ngIf="bien.disponibilites[0].AMPM=='am'" class="card-text">Disponible pour le {{bien.disponibilites[0].date}} dans la matinée.</p>
-	    <p *ngIf="bien.disponibilites[0].AMPM=='pm'"class="card-text">Disponible pour le {{bien.disponibilites[0].date}} dans l'après-midi.</p>
+	    <div *ngIf="bien.disponibilites.length != 0">
+	 		<h5 class="card-title">Disponibilités</h5>
+	    	<div *ngFor="let dat of date; let i = index">
+			    <p *ngIf="AMPM[i]=='am'" class="card-text">Disponible pour le {{date[i]}} dans la matinée.</p>
+			    <p *ngIf="AMPM[i]=='pm'"class="card-text">Disponible pour le {{date[i]}} dans l'après-midi.</p>
+			</div>
+		</div>
+		<br/>
 	    <h5 class="card-title">Prix</h5>
 	    <p class="card-text">Prix : {{bien.prixNeuf}} €</p>
-	    <a *ngIf="dispo" class="btn btn-primary text-white" (click)="emprunt()">Empruntez !</a>
+	    <a *ngIf="dispo" class="btn btn-primary text-white mb-1" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="chooseDate">Empruntez !</a>
+	    <br/>
+	    <div *ngFor="let dat of date; let i = index" class="btn-group btn-group-toggle" id="chooseDate" [ngbCollapse]="!isCollapsed" ngbRadioGroup name="radioBasic">
+		  <label *ngIf="AMPM[i]=='am'" ngbButtonLabel class="btn-secondary mr-1">
+		    <input ngbButton type="radio" (click)="emprunt(date[i],AMPM[i])">{{date[i]}} matin
+		  </label>
+		  <label *ngIf="AMPM[i]=='pm'" ngbButtonLabel class="btn-secondary mr-1">
+		    <input ngbButton type="radio" (click)="emprunt(date[i],AMPM[i])">{{date[i]}} après-midi
+		  </label>
+		</div>
 	    <ngb-alert *ngIf="indispo" [dismissible]="false" type="danger">
               <strong>Indisponible</strong>
         </ngb-alert>
