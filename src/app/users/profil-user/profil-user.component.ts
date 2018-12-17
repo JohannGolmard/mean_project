@@ -70,10 +70,12 @@ export class ProfilUserComponent implements OnInit {
 			let date;
 			let pmAm;
 			let dateCourante : string;
+      let split;
 			for(let i = 0 ; i<this.date_biens.length;i++){
 				dateCourante=this.date_biens[i].toString();
-				date = dateCourante.slice(0, 10);
-				pmAm=dateCourante.slice(11, 13);
+        split = dateCourante.split(":");
+				date = split[0];
+				pmAm= split[1];
 				data={"idBien":iDBien.toString(),"date":date,"AMPM":pmAm}; 
 				this.service.addDispo(data).subscribe(res =>{});
 			}
