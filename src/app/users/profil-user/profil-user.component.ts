@@ -40,6 +40,7 @@ export class ProfilUserComponent implements OnInit {
   private biens : Object[] = [];
   private role : string;
   private services : Object[] = [];
+  private notifier;
 
   private les_tags : Object[]; //formulaire bien
   private les_tags_autre : Object[]; //formulaire service
@@ -146,6 +147,7 @@ export class ProfilUserComponent implements OnInit {
         this.prenom = item[0].prenom;
         this.email = item[0].email;
         this.role = item[0].role;
+        this.notifier = item[0].aNotifier;
         this.service.getBiensByEmail(this.email).subscribe(res =>{
 			this.biens = res;
 	        this.service.getServicesByEmail(this.email).subscribe(res =>{

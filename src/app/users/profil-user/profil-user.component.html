@@ -1,5 +1,10 @@
 <br />
 <h1>Profil de {{nom}}  {{prenom}}</h1>
+
+<div *ngIf="notifier" class="alert alert-danger">
+  <strong>Attention !</strong> Vous ne pouvez plus emprunter de biens/services ! 
+</div>
+
 <div class="row">
   <div class="col-md-6">
     <h5>Afficher le formulaire d'ajout d'un bien</h5>
