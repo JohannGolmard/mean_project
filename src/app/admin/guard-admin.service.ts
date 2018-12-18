@@ -9,11 +9,13 @@ export class GuardAdminService implements CanActivate{
 
   canActivate(): boolean{
   	let item = JSON.parse(sessionStorage.getItem('user'));
+    console.log(item);
   	if(item == null) {
       this.router.navigate(['']);
       return false;
     }
     if(item[0].role != "admin"){
+    this.router.navigate(['']);
       return false;
     }
     return true;
