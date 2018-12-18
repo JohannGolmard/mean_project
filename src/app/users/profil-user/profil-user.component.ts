@@ -142,7 +142,7 @@ export class ProfilUserComponent implements OnInit {
 		this.descriptif="";
 		this.les_tags_biens_name="";
 		this.les_tags_services_name="";
-		let item = JSON.parse(localStorage.getItem('user'));
+		let item = JSON.parse(sessionStorage.getItem('user'));
         this.nom = item[0].nom;
         this.prenom = item[0].prenom;
         this.email = item[0].email;

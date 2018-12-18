@@ -30,7 +30,7 @@ export class PageBienComponent implements OnInit {
   			this.tags+=tag.nom+" ";
   		}
   	}
-  	if(JSON.parse(localStorage.getItem('user'))[0].email == this.bien.idProprio){
+  	if(JSON.parse(sessionStorage.getItem('user'))[0].email == this.bien.idProprio){
   		this.same=true;
   		this.dispo=false;
   	}
@@ -59,9 +59,8 @@ export class PageBienComponent implements OnInit {
   }
   emprunt(date:any,AMPM:any){
   	this.isCollapsed = !this.isCollapsed;
-  	let data = {"email":JSON.parse(localStorage.getItem('user'))[0].email,"idBien":this.bien.idBien,"date":date,"AMPM":AMPM};
+  	let data = {"email":JSON.parse(sessionStorage.getItem('user'))[0].email,"idBien":this.bien.idBien,"date":date,"AMPM":AMPM};
   	this.service.doEmprunt(data).subscribe(res=>{
-  		console.log(res);
   		this.done = true;
   		this.dispo=false;
   		this.indispo = false;

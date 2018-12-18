@@ -17,9 +17,9 @@ export class MenuComponent implements OnInit, DoCheck {
   ngOnInit() {
   }
   ngDoCheck(){
-    	this.login = localStorage.getItem('user');
+    	this.login = sessionStorage.getItem('user');
   		if(this.login != null){
-        let item = JSON.parse(localStorage.getItem('user'))
+        let item = JSON.parse(sessionStorage.getItem('user'))
         this.nom = item[0].nom;
         this.prenom = item[0].prenom;
   			this.isLogged=true;	
@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit, DoCheck {
   }
   logOut(){
   	this.isLogged = false;
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
     this.isAdmin=false;
   }
 }

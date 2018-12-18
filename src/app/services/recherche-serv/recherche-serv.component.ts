@@ -29,7 +29,7 @@ export class RechercheServComponent implements OnInit {
     this.les_tags.push(" ");
     this.service_tag.getTag().subscribe(res => {
       this.les_tags=res;
-      if(JSON.parse(localStorage.getItem('user'))[0].aNotifier){
+      if(JSON.parse(sessionStorage.getItem('user'))[0].aNotifier){
         this.canBorrow = false;
       }
     });
@@ -66,8 +66,7 @@ export class RechercheServComponent implements OnInit {
 
   		this.service.getService(this.titre,this.min,this.max,dd,df,tag).subscribe(res =>{
   			this.result = res;
-        console.log(res);
-            this.submitted=true;
+        this.submitted=true;
   		});
 
   	}

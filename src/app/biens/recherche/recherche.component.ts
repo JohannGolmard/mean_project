@@ -29,7 +29,7 @@ export class RechercheComponent implements OnInit {
     this.les_tags.push(" ");
     this.service_tag.getTag().subscribe(res => {
       this.les_tags=res;
-      if(JSON.parse(localStorage.getItem('user'))[0].aNotifier){
+      if(JSON.parse(sessionStorage.getItem('user'))[0].aNotifier){
         this.canBorrow = false;
       }
     });

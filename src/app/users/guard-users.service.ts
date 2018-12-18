@@ -9,7 +9,7 @@ export class GuardUsersService implements CanActivate{
   constructor(private router: Router) { }
 
   canActivate(): boolean{
-  	let item = JSON.parse(localStorage.getItem('user'));
+  	let item = JSON.parse(sessionStorage.getItem('user'));
   	if(item == null) {
       this.router.navigate(['login']);
       return false;

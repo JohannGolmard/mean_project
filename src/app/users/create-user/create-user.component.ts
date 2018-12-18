@@ -28,7 +28,6 @@ export class CreateUserComponent implements OnInit {
   onSubmit(){
   	if(this.mail != undefined && this.mdp != undefined && this.nom != undefined && this.prenom != undefined && this.ville != undefined && this.adresse != undefined && this.cp != undefined){
   		this.service.addUser(this.mail,this.nom,this.prenom,this.mdp,this.ville,this.adresse,this.cp).subscribe(res =>{
-  			console.log(res);
         if(res!="Inscription réussie"){
           this.notAdded=false;
         }

@@ -16,8 +16,10 @@ export class LoginUserComponent implements OnInit {
   constructor(private service: UsersService,private router: Router) { }
 
   ngOnInit() {
-    if(JSON.parse(localStorage.getItem('user')).length != 0)
-      this.router.navigate(['/profil']);
+    if(sessionStorage.getItem('user') != null){
+      if(JSON.parse(sessionStorage.getItem('user')).length != 0)
+        this.router.navigate(['/profil']);
+    }
   }
   onSubmit(){
 
@@ -25,7 +27,7 @@ export class LoginUserComponent implements OnInit {
       this.service.loginIn(this.login,this.passwd).subscribe(res =>{
         this.resultat = res;
         if(this.resultat.length==1){
-        localStorage.setItem('user',JSON.stringify(this.resultat));
+        sessionStorage.setItem('user',JSON.stringify(this.resultat));
           this.isLogged = true;
           this.router.navigate(['/profil']);
         }
@@ -35,7 +37,7 @@ export class LoginUserComponent implements OnInit {
   }
   logOut(){
   	this.isLogged = false;
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
   }
 
 }
