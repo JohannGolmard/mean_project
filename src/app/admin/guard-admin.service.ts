@@ -9,7 +9,6 @@ export class GuardAdminService implements CanActivate{
 
   canActivate(): boolean{
   	let item = JSON.parse(sessionStorage.getItem('user'));
-    console.log(item);
   	if(item == null) {
       this.router.navigate(['']);
       return false;
